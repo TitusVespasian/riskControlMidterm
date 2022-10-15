@@ -95,8 +95,15 @@ for col in train_master.columns:
 
 y_train = train_master['target'].values
 
-# 剔除标准差几乎为零的特征项
-feature_std = train_master.std().sort_values(ascending=True)
+print(train_master.shape)
+# 剔除标准差几乎为零的特征项 TODO:删除小于1/4分位数的特征项
+numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
+new_df = train_master.select_dtypes(include=numerics).loc[:, train_master.quantile(0.25) < train_master.std()]
+train_master = pd.concat([new_df, train_master.select_dtypes(exclude=numerics)],axis=1)
+print(train_master.shape)
+
+# feature_std = train_master.std().sort_values(ascending=True)
+'''
 # feature_std TODO: ipynb 改动 删除std为0的前两页 DONE
 train_master.drop(['WeblogInfo_49', 'WeblogInfo_10'], axis=1, inplace=True)
 train_master['Idx'] = train_master['Idx'].astype(np.int32)
@@ -109,6 +116,7 @@ for i in range(25):
         pass
 
 train_master['UserInfo_8'].head(20)
+'''
 
 # %% 杂项
 
