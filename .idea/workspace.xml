@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="file added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/city_data_feature_selection.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/train/Master_Training_Modified.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/master_feature_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/master_feature_selection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/master_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/master_process.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/master_feature_selection.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,8 +171,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/master_feature_selection.py</url>
-          <line>104</line>
+          <line>119</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/master_feature_selection.py</url>
+          <line>57</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/master_feature_selection.py</url>
+          <line>53</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

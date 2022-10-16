@@ -47,10 +47,15 @@ def modelfit(alg, dtrain, y_train, dtest=None, useTrainCV=True, cv_folds=5, earl
     print("AUC 得分 (训练集): %f" % metrics.roc_auc_score(y_train, dtrain_predprob))
 
     feat_imp = pd.Series(alg.get_booster().get_fscore()).sort_values(ascending=False)
-    for i in range(20):
+    feat_list=[]
+    for i in range(min(len(feat_imp),20)):
         print(dtrain.columns[int(feat_imp.index[i][1:])], feat_imp[i])
+        feat_list.append(dtrain.columns[int(feat_imp.index[i][1:])])
+    feat_imp_new=pd.DataFrame(data=feat_list,columns=['featuer_name'],index=feat_imp.index)
+    feat_temp = pd.DataFrame(data=feat_imp,columns=['feature_score'])
+    feat_imp_new = pd.concat([feat_imp_new, feat_temp], axis=1)
     print(feat_imp.shape)
-    feat_imp.plot(kind='bar', title='Feature Importances')
+    feat_imp_new.plot(x='feature_name',y='feature_score',kind='bar', title='Feature Importances')
     plt.ylabel('Feature Importance Score')
 
 
@@ -78,7 +83,12 @@ y_train = train_master["target"].values
 # 'UserInfo_9'
 print(train_master['UserInfo_9'].unique())
 # ['中国移动' '中国电信' '不详' '中国联通']
-train_master=pd.get_dummies(train_master.UserInfo_9)
+train_master=train_master.join(pd.get_dummies(train_master.UserInfo_9,prefix="UserInfo_9_"))
+train_master.drop('UserInfo_9',axis=1,inplace=True)
+try:
+    print(train_master.UserInfo_9)
+except AttributeError:
+    print("successfully droped!")
 
 # 'UserInfo_22'
 print(train_master['UserInfo_22'].unique())
@@ -95,11 +105,16 @@ D     27867
 Name: UserInfo_22, dtype: int64
 """
 train_master.loc[train_master['UserInfo_22']=='初婚','UserInfo_22']="已婚"
-train_master=pd.get_dummies(train_master.UserInfo_22)
+train_master=train_master.join(pd.get_dummies(train_master.UserInfo_22,prefix="UserInfo_22_"))
+train_master.drop('UserInfo_22',axis=1,inplace=True)
+try:
+    print(train_master.UserInfo_9)
+except AttributeError:
+    print("successfully droped!")
 
 # 'UserInfo_23'
 print(train_master['UserInfo_23'].value_counts())
-dummies_UserInfo_23=pd.get_dummies(train_master['UserInfo_23'], prefix='UserInfo_23')
+dummies_UserInfo_23=pd.get_dummies(train_master['UserInfo_23'], prefix='UserInfo_23_')
 modelfit(xgb1, dummies_UserInfo_23, y_train)
 
 dummies_UserInfo_2 = pd.get_dummies(train_master['UserInfo_2'], prefix='UserInfo_2')

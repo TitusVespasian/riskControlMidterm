@@ -96,7 +96,7 @@ for col in train_master.columns:
 y_train = train_master['target'].values
 
 print(train_master.shape)
-# 剔除标准差几乎为零的特征项 TODO:删除小于1/4分位数的特征项
+# 剔除标准差几乎为零的特征项 TODO:删除小于1/4分位数的特征项 DONE
 numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
 new_df = train_master.select_dtypes(include=numerics).loc[:, train_master.quantile(0.25) < train_master.std()]
 train_master = pd.concat([new_df, train_master.select_dtypes(exclude=numerics)],axis=1)
@@ -144,13 +144,13 @@ def encodingstr(s, appendix):
         return s
 
 
-# TODO: ipynb 改动 多加了几列包括删去‘省’和‘市’ 'UserInfo_7','UserInfo_19'因为是直辖市
+# TODO: ipynb 改动 多加了几列包括删去‘省’和‘市’ 'UserInfo_7','UserInfo_19'因为是直辖市 DONE
 for col in ['UserInfo_2', 'UserInfo_4', 'UserInfo_8', 'UserInfo_20', 'UserInfo_24', 'UserInfo_7', 'UserInfo_19']:
     train_master[col] = train_master[col].apply(lambda x: encodingstr(x, '市'))
 for col in ['UserInfo_7', 'UserInfo_19']:
     train_master[col] = train_master[col].apply(lambda x: encodingstr(x, '省'))
 
-# TODO: 本文档还未包含one-hot 编码化
+# TODO: 本文档还未包含one-hot 编码化 这里和ipynb不一致，特征工程文件中包含了 DONE
 
 # %% 借款成交时间处理
 
