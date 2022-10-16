@@ -179,4 +179,4 @@ train_master['target'] = train_master['target'].astype(str)
 
 # %% 将处理好的数据导出到工作目录
 
-train_master.to_csv(path_or_buf="./data/train/Master_Training_Modified.csv")
+train_master.to_csv(path_or_buf="./data/train/Master_Training_Cleaned.csv")
