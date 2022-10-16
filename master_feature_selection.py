@@ -13,15 +13,27 @@ import xgboost as xgb
 from xgboost.sklearn import XGBClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import cross_validate
+
 from sklearn import metrics
 import matplotlib.pylab as plt
+import re
 
 from matplotlib.pylab import rcParams
+rcParams['figure.figsize'] = 8, 6
+#from matplotlib.font_manager import FontProperties
+#myfont = FontProperties(fname=r"external-libraries/yahei.ttf",size=12)
+rcParams['font.sans-serif'] = ['SimHei']
 
-rcParams['figure.figsize'] = 12, 4
 
 # %% 特征分析函数
-
+def getFeaturename(name):
+    try:
+        rex_str=name[name.rfind('_')+1:]
+    except:
+        print('Not successful')
+        print('name:'+name)
+        return name
+    return rex_str
 
 def modelfit(alg, dtrain, y_train, dtest=None, useTrainCV=True, cv_folds=5, early_stopping_rounds=50):
     if useTrainCV:
@@ -49,14 +61,18 @@ def modelfit(alg, dtrain, y_train, dtest=None, useTrainCV=True, cv_folds=5, earl
     feat_imp = pd.Series(alg.get_booster().get_fscore()).sort_values(ascending=False)
     feat_list=[]
     for i in range(min(len(feat_imp),20)):
-        print(dtrain.columns[int(feat_imp.index[i][1:])], feat_imp[i])
-        feat_list.append(dtrain.columns[int(feat_imp.index[i][1:])])
-    feat_imp_new=pd.DataFrame(data=feat_list,columns=['featuer_name'],index=feat_imp.index)
+        temp_str=getFeaturename(dtrain.columns[int(feat_imp.index[i][1:])])
+        print(temp_str, feat_imp[i])
+        feat_list.append(temp_str)
+    feat_imp_new=pd.DataFrame(data=feat_list,columns=['feature_name'],index=feat_imp.index)
     feat_temp = pd.DataFrame(data=feat_imp,columns=['feature_score'])
     feat_imp_new = pd.concat([feat_imp_new, feat_temp], axis=1)
     print(feat_imp.shape)
-    feat_imp_new.plot(x='feature_name',y='feature_score',kind='bar', title='Feature Importances')
+    feat_imp_new.plot(x='feature_name',y='feature_score',kind='barh',
+                      title='Feature Importances')
     plt.ylabel('Feature Importance Score')
+    #plt.gcf().subplots_adjust(left=0.2)
+    plt.show()
 
 
 xgb1 = XGBClassifier(
@@ -83,7 +99,7 @@ y_train = train_master["target"].values
 # 'UserInfo_9'
 print(train_master['UserInfo_9'].unique())
 # ['中国移动' '中国电信' '不详' '中国联通']
-train_master=train_master.join(pd.get_dummies(train_master.UserInfo_9,prefix="UserInfo_9_"))
+train_master=train_master.join(pd.get_dummies(train_master.UserInfo_9,prefix="UserInfo_9"))
 train_master.drop('UserInfo_9',axis=1,inplace=True)
 try:
     print(train_master.UserInfo_9)
@@ -105,7 +121,7 @@ D     27867
 Name: UserInfo_22, dtype: int64
 """
 train_master.loc[train_master['UserInfo_22']=='初婚','UserInfo_22']="已婚"
-train_master=train_master.join(pd.get_dummies(train_master.UserInfo_22,prefix="UserInfo_22_"))
+train_master=train_master.join(pd.get_dummies(train_master.UserInfo_22,prefix="UserInfo_22"))
 train_master.drop('UserInfo_22',axis=1,inplace=True)
 try:
     print(train_master.UserInfo_9)
@@ -114,7 +130,7 @@ except AttributeError:
 
 # 'UserInfo_23'
 print(train_master['UserInfo_23'].value_counts())
-dummies_UserInfo_23=pd.get_dummies(train_master['UserInfo_23'], prefix='UserInfo_23_')
+dummies_UserInfo_23=pd.get_dummies(train_master['UserInfo_23'], prefix='UserInfo_23')
 modelfit(xgb1, dummies_UserInfo_23, y_train)
 
 dummies_UserInfo_2 = pd.get_dummies(train_master['UserInfo_2'], prefix='UserInfo_2')
