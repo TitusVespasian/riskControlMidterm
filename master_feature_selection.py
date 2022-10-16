@@ -102,8 +102,6 @@ except AttributeError:
     print("successfully droped!")
 
 # 'UserInfo_22'
-print(train_master['UserInfo_22'].unique())
-# ['D' '未婚' '已婚' '不详' '离婚' '再婚' '初婚']
 print(train_master['UserInfo_22'].value_counts())
 """
 D     27867
@@ -119,16 +117,22 @@ train_master.loc[train_master['UserInfo_22'] == '初婚', 'UserInfo_22'] = "已�
 train_master = train_master.join(pd.get_dummies(train_master.UserInfo_22, prefix="UserInfo_22"))
 train_master.drop('UserInfo_22', axis=1, inplace=True)
 try:
-    print(train_master.UserInfo_9)
+    print(train_master.UserInfo_22)
 except AttributeError:
     print("successfully droped!")
 
 # 'UserInfo_23'
 print(train_master['UserInfo_23'].value_counts())
+# len=27
 dummies_UserInfo_23 = pd.get_dummies(train_master['UserInfo_23'], prefix='UserInfo_23')
+#train_master = train_master.join(pd.get_dummies(train_master.UserInfo_23, prefix="UserInfo_23"))
+#train_master.drop('UserInfo_23', axis=1, inplace=True)
 modelfit(xgb1, dummies_UserInfo_23, y_train)
 
-# 'UserInfo_
+
+
+# 'UserInfo_23
+#
 
 dummies_UserInfo_2 = pd.get_dummies(train_master['UserInfo_2'], prefix='UserInfo_2')
 
