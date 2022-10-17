@@ -30,6 +30,20 @@ def getFeaturename(name):
         return name
     return rex_str
 
+def plot_haves(train_master,feature_name,have_char):
+    target_have = train_master.target[train_master[feature_name] == have_char]\
+        .value_counts()
+    target_not_have = train_master.target[train_master[feature_name] != have_char]\
+        .value_counts()
+    df_WeblogInfo_20 = pd.DataFrame({'no_have': target_have, 'have': target_not_have})
+    df_WeblogInfo_20.plot(kind='bar', stacked=True)
+    plt.title(u'有无'+feature_name+'对结果的影响')
+    plt.xlabel(u'有无')
+    plt.ylabel(u'违约情况')
+    plt.savefig('./backup/'+feature_name+'_hnh.jpg')
+    plt.show()
+    plt.pause(6)  # 间隔的秒数：6s
+    plt.close()
 
 def modelfit(alg, dtrain, y_train, dtest=None, useTrainCV=True, cv_folds=5, early_stopping_rounds=50):
     if useTrainCV:
@@ -70,6 +84,7 @@ def modelfit(alg, dtrain, y_train, dtest=None, useTrainCV=True, cv_folds=5, earl
     plt.ylabel('Feature Importance Score')
     # plt.gcf().subplots_adjust(left=0.2)
     plt.show()
+
 
 
 xgb1 = XGBClassifier(
@@ -125,16 +140,31 @@ except AttributeError:
 print(train_master['UserInfo_23'].value_counts())
 # len=27
 dummies_UserInfo_23 = pd.get_dummies(train_master['UserInfo_23'], prefix='UserInfo_23')
-#train_master = train_master.join(pd.get_dummies(train_master.UserInfo_23, prefix="UserInfo_23"))
-#train_master.drop('UserInfo_23', axis=1, inplace=True)
-modelfit(xgb1, dummies_UserInfo_23, y_train)
+train_master = train_master.join(pd.get_dummies(train_master.UserInfo_23, prefix="UserInfo_23"))
+train_master.drop('UserInfo_23', axis=1, inplace=True)
+# modelfit(xgb1, dummies_UserInfo_23, y_train)
+
+# 'UserInfo_24'
+print(train_master['UserInfo_24'].value_counts())
+# len=1963
+"""
+print((train_master['UserInfo_24']=='D').value_counts())
+True     27867
+False     2133
+Name: UserInfo_24, dtype: int64
+"""
+plot_haves(train_master,'UserInfo_24','D')
+temp=train_master['UserInfo_24'].copy()
+train_master['UserInfo_24']=temp.apply(lambda x : 1 if x=='D' else 0)
+
+rest_col=['Education_Info2','Education_Info3','Education_Info4','Education_Info6','Education_Info7',
+          'Education_Info8','WeblogInfo_19','WeblogInfo_20','WeblogInfo_21']
+for i in rest_col:
+    print(train_master[rest_col].value_counts())
 
 
 
-# 'UserInfo_23
-#
 
 dummies_UserInfo_2 = pd.get_dummies(train_master['UserInfo_2'], prefix='UserInfo_2')
 
-# modelfit(xgb1, dummies_UserInfo_2, y_train)
 # modelfit(xgb1, dummies_UserInfo_2, y_train)
