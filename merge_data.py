@@ -64,8 +64,8 @@ for column in missing_list_mean:
 train_all['Idx'] = train_all['Idx'].astype(np.int64)
 train_all['target'] = train_all['target'].astype(np.int64)
 
-train_all = pd.get_dummies(train_all)
+# train_all = pd.get_dummies(train_all)
 # train_all.head()
 train_all.to_csv('data/train/train_all.csv', encoding='utf-8', index=False)
-y_train = train_all.pop('target')
+# y_train = train_all.pop('target')
 
