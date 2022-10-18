@@ -87,10 +87,7 @@ xgb1 = XGBClassifier(
 modelfit(xgb1, train_all, y_train)
 
 
-# %% train_model-2
 
-lr = LogisticRegression(tol=1e-6)
-parameters = {'penalty': ('l2'), 'C': [1.00, 0.70], }
 
 # GridSearchCV对于所有的参数进行自动的组合，选出效果最好的
 clf_lr = GridSearchCV(lr, parameters, cv=3)
