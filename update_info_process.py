@@ -48,9 +48,11 @@ with open('data/train/userupdate_Modified.csv', 'r') as f:
         # 这里的每一条line都是一条上传记录
         cols = line.strip().split(",")  # cols 是list结果
         userupdate_info_date[cols[0]].append(cols[1])  # 按照ID对ListingInfo1区分
-        userupdate_info_number[cols[0]].append(cols[2])  # 按照ID对于UserupdateInfo1区分，不允许重复
-        userupdate_info_category[cols[0]].add(cols[2])  # 同上，但允许重复
-        userupdate_info_times[cols[0]].append(cols[3])  # 按照ID对UserupdateInfo2区分
+        userupdate_info_category[cols[0]].add(cols[2])  # 同上，但不允许重复
+        userupdate_info_number[cols[0]].append(
+            cols[2])  # 按照ID对于UserupdateInfo1区分，允许重复
+        userupdate_info_times[cols[0]].append(cols[3])
+        # 按照ID对UserupdateInfo2区分
     # print(u'提取信息完成')
 
 
@@ -66,8 +68,8 @@ for key in userupdate_info_date.keys():
 
     # 时间差值绝对值化
     userupdate_info_date_[key] = abs(delta_date.days)
-    userupdate_info_number_[key] = len(userupdate_info_number[key])
     userupdate_info_category_[key] = len(userupdate_info_category[key])
+    userupdate_info_number_[key] = len(userupdate_info_number[key])
 
 # 节省内存空间
 del userupdate_info_date, userupdate_info_number, userupdate_info_category, userupdate_info_times
@@ -86,4 +88,5 @@ userupdate_df = pd.DataFrame({'Idx': Idx_, 'numbers': numbers_,
 
 userupdate_df = userupdate_df.sort_values("Idx")
 
-userupdate_df.to_csv('data/train/userupdate_df.csv', index=False, encoding='utf-8')
+userupdate_df.to_csv('data/train/userupdate_df.csv',
+                     index=False, encoding='utf-8')

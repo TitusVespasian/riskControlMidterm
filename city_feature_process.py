@@ -61,14 +61,16 @@ def modelfit(fname, alg, dtrain, _y_train, draw=False, dtest=None, useTrainCV=Tr
     print("准确率 : %.4g" % metrics.accuracy_score(_y_train, dtrain_predictions))
     print("AUC 得分 (训练集): %f" % metrics.roc_auc_score(_y_train, dtrain_predprob))
 
-    feat_imp = pd.Series(alg.get_booster().get_fscore()).sort_values(ascending=False)
+    feat_imp = pd.Series(alg.get_booster().get_fscore()
+                         ).sort_values(ascending=False)
     feat_list = []
     for i in range(len(feat_imp)):
         temp_str = get_featurename(dtrain.columns[int(feat_imp.index[i][1:])])
         if i < 20:
             print(temp_str, feat_imp[i])
         feat_list.append(temp_str)
-    feat_imp_new = pd.DataFrame(data=feat_list, columns=['feature_name'], index=feat_imp.index)
+    feat_imp_new = pd.DataFrame(data=feat_list, columns=[
+                                'feature_name'], index=feat_imp.index)
     feat_temp = pd.DataFrame(data=feat_imp, columns=['feature_score'])
     feat_imp_new = pd.concat([feat_imp_new, feat_temp], axis=1)
 
@@ -102,7 +104,8 @@ xgb1 = XGBClassifier(
 
 # 省份信息处理 UserInfo_19, UserInfo_7
 def province_selection(_train_master):
-    dummies_19 = pd.get_dummies(_train_master.UserInfo_19, prefix="UserInfo_19")
+    dummies_19 = pd.get_dummies(
+        _train_master.UserInfo_19, prefix="UserInfo_19")
     score_imp = modelfit("UserInfo_19", xgb1, dummies_19, y_train)
 
     # _train_master["UserInfo_19"]=_train_master["UserInfo_19"].apply(lambda x:
@@ -111,7 +114,8 @@ def province_selection(_train_master):
     # TODO: ajust 25 greater for xgboost lesser for lr lightgbm ok
     for iname in score_imp['feature_name']:
         if (score_imp[score_imp['feature_score'] <= 25]['feature_name'] == iname).any():
-            _train_master.loc[_train_master["UserInfo_19"] == iname, "UserInfo_19"] = 'rest'
+            _train_master.loc[_train_master["UserInfo_19"]
+                              == iname, "UserInfo_19"] = 'rest'
     _train_master.join(dummies_19)
     _train_master.drop("UserInfo_19", axis=1, inplace=True)
 
@@ -120,7 +124,8 @@ def province_selection(_train_master):
     # TODO: ajust 46 greater for xgboost lesser for lr lightgbm ok
     for iname in score_imp['feature_name']:
         if (score_imp[score_imp['feature_score'] <= 46]['feature_name'] == iname).any():
-            _train_master.loc[_train_master["UserInfo_7"] == iname, "UserInfo_7"] = 'rest'
+            _train_master.loc[_train_master["UserInfo_7"]
+                              == iname, "UserInfo_7"] = 'rest'
     _train_master.join(dummies_7)
     _train_master.drop("UserInfo_7", axis=1, inplace=True)
 
@@ -129,7 +134,8 @@ def province_selection(_train_master):
 
 def get_city_level(x, if_print=False):
     if x == '0' or x == '不详':
-        tmp = (1 * 4 + 1.5 * 15 + 2 * 30 + 3 * 70 + 4 * 90 + 128 * 5) / (4 + 15 + 30 + 70 + 90 + 128)
+        tmp = (1 * 4 + 1.5 * 15 + 2 * 30 + 3 * 70 + 4 *
+               90 + 128 * 5) / (4 + 15 + 30 + 70 + 90 + 128)
         return tmp
     x = encodingstr_cp(x, '市')
     for ilevel in city_level.keys():
@@ -173,12 +179,15 @@ def count_unique(x):
 # 城市信息处理 UserInfo_2, UserInfo_4 UserInfo_8 UserInfo_20
 def city_process(_train_master):
     for ifea in ['UserInfo_2', 'UserInfo_4', 'UserInfo_8', 'UserInfo_20']:
-        _train_master[ifea + '_level'] = _train_master[ifea].apply(get_city_level)
+        _train_master[ifea +
+                      '_level'] = _train_master[ifea].apply(get_city_level)
         _train_master[ifea + '_lo'] = _train_master[ifea].apply(get_city_lo)
         _train_master[ifea + '_al'] = _train_master[ifea].apply(get_city_al)
 
-    _train_master['city_sim'] = _train_master[['UserInfo_2', 'UserInfo_4', 'UserInfo_8', 'UserInfo_20']].nunique(axis=1)
-    _train_master = _train_master.drop(['UserInfo_2', 'UserInfo_4', 'UserInfo_8', 'UserInfo_20'], axis=1)
+    _train_master['city_sim'] = _train_master[['UserInfo_2',
+                                               'UserInfo_4', 'UserInfo_8', 'UserInfo_20']].nunique(axis=1)
+    _train_master = _train_master.drop(
+        ['UserInfo_2', 'UserInfo_4', 'UserInfo_8', 'UserInfo_20'], axis=1)
 
     return _train_master
 
@@ -219,16 +228,19 @@ if __name__ == "__main__":
     sum_al = 0
     len_c = len(city_pos)
     for icity in city_pos:
-        city_pos_dict[encodingstr_cp(icity['name'], '市')] = [icity['longitude'], icity['latitude']]
+        city_pos_dict[encodingstr_cp(icity['name'], '市')] = [
+            icity['longitude'], icity['latitude']]
         sum_lo += icity['longitude']
         sum_al += icity['latitude']
 
     avg_lo = sum_lo / len_c
     avg_al = sum_al / len_c
 
-    train_master = pd.read_csv(r"./data/train/Master_Training_Cleaned_expCity.csv")
+    train_master = pd.read_csv(
+        r"./data/train/Master_Training_Cleaned_expCity.csv")
     y_train = train_master["target"].values
     train_master = province_selection(train_master)
     train_master = city_process(train_master)
-    train_master.to_csv(r"./data/train/Master_Training_Modified.csv", index=False, sep=',')
+    train_master.to_csv(
+        r"./data/train/Master_Training_Modified.csv", index=False, sep=',')
     print(train_master.shape)
