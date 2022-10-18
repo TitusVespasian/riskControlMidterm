@@ -40,15 +40,20 @@ train_all = pd.merge(train_all, train_loginfo, how='left', on='Idx')
 train_all.isnull().sum().sort_values(ascending=False).head(10)
 
 """
-delta_days, LogInfo2, LogInfo1    1013
+kind_of_L1,kind_of_L2,num_of_logins,between_early,between_late    1013
 dates, times, categorys, numbers     5
 """
 # 现在对于缺少的值进行填充
-# 填充方法目前为中位数填充
-# missing_list=["delta_days","LogInfo2","LogInfo1","dates","times","categorys","numbers"]
-missing_list=list(train_all.columns[train_all.isnull().sum() > 0])
+# 填充方法目前为0 0 0 0 0/0填充
+missing_list_0=["dates","times","categorys","numbers","kind_of_L1","kind_of_L2","num_of_logins"]
+missing_list_mean=['between_early','between_late']
+# missing_list=list(train_all.columns[train_all.isnull().sum() > 0])
 
-for column in missing_list:
+for column in missing_list_0:
+    # mean_val = train_all[column].mean()
+    train_all[column].fillna(0, inplace=True)
+
+for column in missing_list_mean:
     mean_val = train_all[column].mean()
     train_all[column].fillna(mean_val, inplace=True)
 
@@ -63,5 +68,4 @@ train_all = pd.get_dummies(train_all)
 # train_all.head()
 train_all.to_csv('data/train/train_all.csv', encoding='utf-8', index=False)
 y_train = train_all.pop('target')
-
 
