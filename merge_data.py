@@ -40,11 +40,15 @@ train_all = pd.merge(train_all, train_loginfo, how='left', on='Idx')
 train_all.isnull().sum().sort_values(ascending=False).head(10)
 
 """
-delta_days, LogInfo2, LogInfo1    1013
-dates, times, categorys, numbers     5
+// 缺失数量
+delta_days, LogInfo2, LogInfo1    1013 // 登陆数据 // 
+
+dates, times, categorys, numbers     5 // update的数据 // 全零填充
 """
-# 现在对于缺少的值进行填充
-# 填充方法目前为中位数填充
+
+# %% 现在对于缺少的值进行填充
+
+# 填充方法目前为平均值填充
 # missing_list=["delta_days","LogInfo2","LogInfo1","dates","times","categorys","numbers"]
 missing_list=list(train_all.columns[train_all.isnull().sum() > 0])
 
