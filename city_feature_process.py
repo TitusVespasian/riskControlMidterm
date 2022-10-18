@@ -14,15 +14,12 @@ from matplotlib.pylab import rcParams
 from sklearn import metrics
 from xgboost.sklearn import XGBClassifier
 
-
+tmp=set()
 # 对于城市数据，统一去除“市或省”后缀
 def encodingstr_cp(s, appendix):
-    regex = re.compile(r'.+' + appendix)
-    if regex.search(s):
-        s = s[:-1]
-        return s
-    else:
-        return s
+    if s.find(appendix)!=-1:
+        s=s[:s.find(appendix)]
+    return s
 
 
 def get_featurename(name):
@@ -36,7 +33,7 @@ def get_featurename(name):
     return rex_str
 
 
-def modelfit(fname,alg, dtrain, _y_train, dtest=None, useTrainCV=True, cv_folds=5, early_stopping_rounds=50):
+def modelfit(fname,alg, dtrain, _y_train, draw=False,dtest=None, useTrainCV=True, cv_folds=5, early_stopping_rounds=50):
     cvresult = 0
     if useTrainCV:
         xgb_param = alg.get_xgb_params()
@@ -71,15 +68,17 @@ def modelfit(fname,alg, dtrain, _y_train, dtest=None, useTrainCV=True, cv_folds=
     feat_imp_new = pd.DataFrame(data=feat_list, columns=['feature_name'], index=feat_imp.index)
     feat_temp = pd.DataFrame(data=feat_imp, columns=['feature_score'])
     feat_imp_new = pd.concat([feat_imp_new, feat_temp], axis=1)
-    print(feat_imp_new.shape)
-    feat_imp_new.plot(x='feature_name', y='feature_score', kind='bar',
-                      title='Feature Importances')
-    plt.ylabel('Feature Importance Score')
-    # plt.gcf().subplots_adjust(left=0.2)
-    plt.savefig('./backup/' + fname + '.png')
-    plt.show()
-    plt.pause(6)
-    plt.close()
+
+    if draw:
+        print(feat_imp_new.shape)
+        feat_imp_new.plot(x='feature_name', y='feature_score', kind='bar',
+                          title='Feature Importances')
+        plt.ylabel('Feature Importance Score')
+        # plt.gcf().subplots_adjust(left=0.2)
+        plt.savefig('./backup/' + fname + '.png')
+        plt.show()
+        plt.pause(6)
+        plt.close()
     return feat_imp_new
 
 
@@ -124,51 +123,55 @@ def province_selection(_train_master):
 
     return _train_master
 
-def get_city_level(x):
+def get_city_level(x,if_print=False):
     if x=='0'or x=='不详':
         tmp=(1*4+1.5*15+2*30+3*70+4*90+128*5)/(4+15+30+70+90+128)
         return tmp
+    x = encodingstr_cp(x,'市')
     for ilevel in city_level.keys():
         if x in city_level[ilevel]:
             return ilevel
-    print(x)
+    if if_print:
+        print(x)
     if(len(x)>=3):
         return 6
     return 5
 
-def get_city_al(x):
+def get_city_al(x,if_print=False):
+    if x=='不详' or x=='0':
+        return sum_al
+    x=encodingstr_cp(x,'市')
     try:
         return city_pos_dict[x][0]
     except KeyError:
-        print("No city al"+x)
+        if if_print:
+            print("No city al"+x)
+        tmp.add(x)
         return 26.5834
 
 def get_city_lo(x):
+    if x=='不详' or x==0:
+        return sum_lo
+    x = encodingstr_cp(x,'市')
     try:
         return city_pos_dict[x][1]
     except KeyError:
-        print("No city lo" + x)
+        #print("No city lo" + x)
         return 107.977
+
+def count_unique(x):
+    return len(x.unique())
 
 
 # 城市信息处理 UserInfo_2, UserInfo_4 UserInfo_8 UserInfo_20
 def city_process(_train_master):
-    _train_master['UserInfo_2_level']=_train_master['UserInfo_2'].apply(get_city_level)
-    _train_master['UserInfo_4_level'] = _train_master['UserInfo_4'].apply(get_city_level)
-    _train_master['UserInfo_8_level'] = _train_master['UserInfo_8'].apply(get_city_level)
-    _train_master['UserInfo_20_level'] = _train_master['UserInfo_20'].apply(get_city_level)
+    for  ifea in ['UserInfo_2','UserInfo_4','UserInfo_8','UserInfo_20']:
+        _train_master[ifea+'_level']=_train_master[ifea].apply(get_city_level)
+        _train_master[ifea+'_lo'] =_train_master[ifea].apply(get_city_lo)
+        _train_master[ifea+'_al'] =_train_master[ifea].apply(get_city_al)
 
-    _train_master['UserInfo_2_lo']=_train_master['UserInfo_2'].apply(lambda x: get_city_lo)
-    _train_master['UserInfo_2_al'] = _train_master['UserInfo_2'].apply(lambda x: get_city_al)
-
-    _train_master['UserInfo_4_lo']=_train_master['UserInfo_4'].apply(lambda x: get_city_lo)
-    _train_master['UserInfo_4_al'] = _train_master['UserInfo_4'].apply(lambda x: get_city_al)
-
-    _train_master['UserInfo_8_lo']=_train_master['UserInfo_8'].apply(lambda x: get_city_lo)
-    _train_master['UserInfo_8_al'] = _train_master['UserInfo_8'].apply(lambda x: get_city_al)
-
-    _train_master['UserInfo_20_lo']=_train_master['UserInfo_20'].apply(lambda x: get_city_lo)
-    _train_master['UserInfo_20_al'] = _train_master['UserInfo_20'].apply(lambda x: get_city_al)
+    _train_master['city_sim']=_train_master[['UserInfo_2','UserInfo_4','UserInfo_8','UserInfo_20']].nunique(axis=1)
+    _train_master=_train_master.drop(['UserInfo_2','UserInfo_4','UserInfo_8','UserInfo_20'],axis=1)
 
     return _train_master
 
@@ -205,16 +208,20 @@ if __name__=="__main__":
         city_pos = json.load(fj)
     city_pos_dict = {}
     sum_lo=0
-    sum_la=0
+    sum_al=0
     len_c=len(city_pos)
     for icity in city_pos:
         city_pos_dict[encodingstr_cp(icity['name'], '市')] = [icity['longitude'], icity['latitude']]
-        #sum_lo+=icity['longitude']
-        #sum_la+=icity['latitude']
+        sum_lo+=icity['longitude']
+        sum_al+=icity['latitude']
+
+    avg_lo=sum_lo/len_c
+    avg_al= sum_al/len_c
 
     train_master = pd.read_csv(r"./data/train/Master_Training_Cleaned_expCity.csv")
     y_train = train_master["target"].values
-    # train_master = province_selection(train_master)
+    train_master = province_selection(train_master)
     train_master = city_process(train_master)
     train_master.to_csv(r"./data/train/Master_Training_Modified.csv", index=False, sep=',')
+    print(train_master.shape)
 
