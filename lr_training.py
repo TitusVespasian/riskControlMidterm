@@ -13,6 +13,8 @@ Logistic_Regression 模型的训练
 
 from sklearn.linear_model import LogisticRegression
 import sklearn.preprocessing as preprocessing
+from sklearn.model_selection import GridSearchCV
+
 import numpy as np
 import pandas as pd
 import pickle
