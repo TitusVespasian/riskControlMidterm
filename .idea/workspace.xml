@@ -80,7 +80,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="lr_feature_selection (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="lr_feature_selection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -146,10 +146,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.merge_data" />
-        <item itemvalue="Python.log_info_process" />
         <item itemvalue="Python.update_info_process" />
+        <item itemvalue="Python.log_info_process" />
         <item itemvalue="Python.city_feature_process" />
-        <item itemvalue="Python.lr_feature_selection (1)" />
+        <item itemvalue="Python.lr_feature_selection" />
       </list>
     </recent_temporary>
   </component>
