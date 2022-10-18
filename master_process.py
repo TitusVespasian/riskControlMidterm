@@ -20,7 +20,7 @@ rcParams['figure.figsize'] = 12, 4
 
 # 双引号前面的r表示不转义
 # train_loginfo = pd.read_csv(r"./data/train/LogInfo_Training_Set.csv", encoding=("gb18030"))
-train_master = pd.read_csv(r"./data/train/Master_Training_Set.csv", encoding=("gb18030"))
+train_master = pd.read_csv(r"./data/train/Master_Training_Set.csv", encoding="gb18030")
 
 # 此部分的探索性数据分析请见ipynb文件
 
@@ -99,7 +99,7 @@ print(train_master.shape)
 # 剔除标准差几乎为零的特征项 TODO:删除小于1/4分位数的特征项 DONE
 numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
 new_df = train_master.select_dtypes(include=numerics).loc[:, train_master.quantile(0.25) < train_master.std()]
-train_master = pd.concat([new_df, train_master.select_dtypes(exclude=numerics)],axis=1)
+train_master = pd.concat([new_df, train_master.select_dtypes(exclude=numerics)], axis=1)
 print(train_master.shape)
 
 # feature_std = train_master.std().sort_values(ascending=True)
@@ -179,4 +179,4 @@ train_master['target'] = train_master['target'].astype(str)
 
 # %% 将处理好的数据导出到工作目录
 
-train_master.to_csv(path_or_buf="./data/train/Master_Training_Cleaned.csv",index=False)
+train_master.to_csv(path_or_buf="./data/train/Master_Training_Cleaned.csv", index=False)

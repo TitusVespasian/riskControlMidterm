@@ -141,7 +141,6 @@ def lr_feature_select(_train_master, _y_train):
     # 'UserInfo_23'
     print(_train_master['UserInfo_23'].value_counts())
     # len=27
-    dummies_UserInfo_23 = pd.get_dummies(_train_master['UserInfo_23'], prefix='UserInfo_23')
     _train_master = _train_master.join(pd.get_dummies(_train_master.UserInfo_23, prefix="UserInfo_23"))
     _train_master.drop('UserInfo_23', axis=1, inplace=True)
     # modelfit(xgb1, dummies_UserInfo_23, y_train)
@@ -159,8 +158,8 @@ def lr_feature_select(_train_master, _y_train):
     temp = _train_master['UserInfo_24'].copy()
     _train_master['UserInfo_24'] = temp.apply(lambda x: 1 if x == 'D' else 0)
 
-    rest_col = ['Education_Info2', 'Education_Info3', 'Education_Info4', 'Education_Info6', 'Education_Info7',
-                'Education_Info8', 'WeblogInfo_19', 'WeblogInfo_20', 'WeblogInfo_21']
+    #rest_col = ['Education_Info2', 'Education_Info3', 'Education_Info4', 'Education_Info6', 'Education_Info7',
+    #            'Education_Info8', 'WeblogInfo_19', 'WeblogInfo_20', 'WeblogInfo_21']
 
     # 'Education_Info2'
     plot_haves(_train_master, 'Education_Info2', 'E')

@@ -4,8 +4,10 @@
     <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="minor changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/city_feature_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/city_feature_process.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/train/Master_Training_Cleaned_expCity.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/train/Master_Training_Cleaned_expCity.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/train/Master_Training_Modified.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/train/Master_Training_Modified.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log_info_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/log_info_process.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lr_feature_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/lr_feature_selection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/master_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/master_process.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/update_info_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/update_info_process.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +38,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="ToolWindowPull Requests.ShowToolbar" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -236,7 +238,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/city_feature_process.py</url>
-          <line>224</line>
+          <line>223</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
