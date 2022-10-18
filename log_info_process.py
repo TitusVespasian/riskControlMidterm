@@ -14,6 +14,14 @@ import pandas as pd
 # import datetime as dt
 # from collections import defaultdict
 
+"""
+- 1.ListingInfo：借款成交时间
+- 2.LogInfo1：操作代码
+- 3.LogInfo2：操作类别
+- 4.LogInfo3：登陆时间
+- 5.idx：每一笔借款的unique key
+"""
+
 # %% read original file
 df1 = pd.read_csv("data/train/LogInfo_Training_Set.csv")
 

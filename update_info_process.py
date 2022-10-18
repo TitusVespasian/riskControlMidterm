@@ -16,7 +16,7 @@ import pandas as pd
 # 目前是将UserupdateInfo1一列全部转为小写字母
 
 train_userupdateinfo = pd.read_csv(
-    r"./data/train/Userupdate_Info_Training_Set.csv", encoding=("gb18030"))
+    r"./data/train/Userupdate_Info_Training_Set.csv", encoding="gb18030")
 
 train_userupdateinfo['UserupdateInfo1'] = train_userupdateinfo['UserupdateInfo1'].apply(
     lambda x: x.lower())

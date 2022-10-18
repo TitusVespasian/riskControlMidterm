@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="minor changes">
+    <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="feature engineering finished">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/city_feature_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/city_feature_process.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log_info_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/log_info_process.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lr_feature_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/lr_feature_selection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/master_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/master_process.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/update_info_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/update_info_process.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +42,7 @@
       <recent name="C:\Users\Summer\Documents\GitHub\riskControlMidterm" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.city_feature_process">
+  <component name="RunManager" selected="Python.update_info_process">
     <configuration name="city_feature_process" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -151,7 +148,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="model_training" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="update_info_process" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -163,7 +160,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model_training.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/update_info_process.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -174,10 +171,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.update_info_process" />
         <item itemvalue="Python.city_feature_process" />
         <item itemvalue="Python.lr_feature_selection (1)" />
         <item itemvalue="Python.master_process" />
-        <item itemvalue="Python.lr_feature_selection" />
         <item itemvalue="Python.lr_feature_selection" />
       </list>
     </recent_temporary>
@@ -212,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665973035483</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feature engineering finished">
+      <created>1666070744738</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1666070744738</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -231,15 +235,26 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="file added" />
     <MESSAGE value="minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor changes" />
+    <MESSAGE value="feature engineering finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature engineering finished" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/city_feature_process.py</url>
-          <line>223</line>
+          <line>232</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/update_info_process.py</url>
+          <line>57</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/update_info_process.py</url>
+          <line>67</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
