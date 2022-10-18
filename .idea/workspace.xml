@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="minor changes">
-      <change afterPath="$PROJECT_DIR$/backup/UserInfo_19.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backup/UserInfo_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/al_long_tude.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/city_feature_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/city_feature_process.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/train/Master_Training_Cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/train/Master_Training_Cleaned.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/train/Master_Training_Modified.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/train/Master_Training_Modified.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,8 +237,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/city_feature_process.py</url>
-          <line>107</line>
-          <option name="timeStamp" value="33" />
+          <line>172</line>
+          <option name="timeStamp" value="40" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
