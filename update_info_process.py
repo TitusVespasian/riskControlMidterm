@@ -10,6 +10,12 @@ from collections import defaultdict
 import datetime as dt
 import pandas as pd
 
+"""
+- 1.ListingInfo1：借款成交时间
+- 2.UserupdateInfo1：修改内容
+- 3.UserupdateInfo2：修改时间
+- 4.idx：每⼀笔借款的unique key
+"""
 
 # %% 文件处理I
 # 在该部分，做一些较为初级的处理
@@ -65,6 +71,7 @@ for key in userupdate_info_date.keys():
     # 时间差值
     delta_date = dt.datetime.strptime(userupdate_info_date[key][0], '%Y/%m/%d') \
         - dt.datetime.strptime(list(set(userupdate_info_times[key]))[0], '%Y/%m/%d')
+    # 最晚更新
 
     # 时间差值绝对值化
     userupdate_info_date_[key] = abs(delta_date.days)
