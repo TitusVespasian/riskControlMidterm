@@ -9,8 +9,24 @@ import matplotlib.pylab as plt
 import xgboost as xgb
 from xgboost.sklearn import XGBClassifier
 import sklearn.preprocessing as preprocessing
+from sklearn.model_selection import train_test_split
 
 import pickle
+
+
+# %% 装载数据集，训练
+
+train_all = pd.read_csv("data/train/train_all.csv")
+X = train_all.drop("target", axis=1)
+y = train_all.pop('target')
+
+# 正样本的数目显著少于负样本，故计算权重
+negative_num = y.value_counts()[0]
+positive_num = y.value_counts()[1]
+adjusted_weight = round(negative_num / positive_num, 2)  # 正例的权值，保留2位小数
+
+X_train, X_check, y_train, y_check = train_test_split(
+    X, y, random_state=1, test_size=0.2,stratify=y)
 
 # %% train_model-1
 
@@ -21,24 +37,21 @@ xgb1 = XGBClassifier(
     min_child_weight=0.5,
     gamma=0.3,
     # subsample=,
-    # colsample_bytree =,
-    objective='binary:logistic',
     nthread=-1,
-    # scale_pos_weight=,
-    tree_method='gpu_hist'
+    scale_pos_weight=adjusted_weight,
+    # tree_method='gpu_hist'
 )
 
-# %% 装载数据集，训练
-# todo: 合并完成之后，改成已经合并的数据集
-
-train_all = pd.read_csv("data/train/Master_Training_Modified.csv")
-y_train = train_all.pop('target')
-
-xgb1.fit(train_all.values[:, 1:], y_train)
-
 # %% 模型的保存，载入与检查
+xgb1.fit(X_train, y_train)
+
+# %% check
+
+print(xgb1.score(X_check, y_check))
 
 # 保存文件
-outfile = open("./saved_model/lr_model.pickle", "wb")
-pickle.dump(xgb1, outfile)
-outfile.close()
+# outfile = open("./saved_model/xgboost_model.pickle", "wb")
+# pickle.dump(xgb1, outfile)
+# outfile.close()
+
+# %% 
