@@ -17,6 +17,9 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
 # 归一化需要
 from sklearn.preprocessing import MinMaxScaler
 
@@ -37,9 +40,6 @@ scaler.fit_transform(train_all)
 X = train_all.drop(['target'], axis=1)
 y = train_all.pop('target')
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, random_state=0, test_size=0.2)
-
 
 # %% 模型的保存，载入与检查
 
@@ -54,11 +54,9 @@ lr = LogisticRegression(
 
 lr.fit(X_train, y_train)
 
-y_pred=lr.predict(X_test)
+y_pred = lr.predict(X_test)
 
 print(lr.score(X_test, y_test))
 
 # %%  保存文件
 outfile = open("./saved_model/lr_model.pickle", "wb")
-pickle.dump(lr, outfile)
-outfile.close()
