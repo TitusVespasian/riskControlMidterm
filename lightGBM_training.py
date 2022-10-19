@@ -91,13 +91,13 @@ params_test5 = {'min_split_gain': [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 
 
 gsearch5 = GridSearchCV(
     estimator=lgb.LGBMClassifier(boosting_type='gbdt', objective='binary', metrics='auc', learning_rate=0.1,
-                                 n_estimators=97, max_depth=4, num_leaves=10, max_bin=165, min_data_in_leaf=71,
+                                 n_estimators=56, max_depth=5, num_leaves=10, max_bin=75, min_data_in_leaf=101,
                                  bagging_fraction=0.6, bagging_freq=0, feature_fraction=0.8,
                                  lambda_l1=1e-05, lambda_l2=0.001),
     param_grid=params_test5, scoring='roc_auc', cv=5, n_jobs=-1)
 gsearch5.fit(X_train, y_train)
 print(gsearch5.cv_results_, gsearch5.best_params_, gsearch5.best_score_)
-# {'min_split_gain': 0.0} 0.7419695884937678
+# {'min_split_gain': 0.2} 0.7403077983762778
 
 
 #{'num_leaves': 10, 'max_depth': 4, 'max_bin': 65, 'min_data_in_leaf': 101, 'feature_fraction': 0.6, 'bagging_fraction': 0.8, 'bagging_freq': 5, 'lambda_l1': 0.001, 'lambda_l2': 0.001, 'min_split_gain': 0.0}
