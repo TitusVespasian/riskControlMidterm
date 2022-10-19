@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="lightGBM update">
-      <change afterPath="$PROJECT_DIR$/clean _and_process_master.py" afterDir="false" />
+    <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="train all update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/city_feature_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/city_feature_process.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/train/Master_Training_Modified.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/train/Master_Training_Modified.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/train/train_all.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/train/train_all.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lightGBM_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/lightGBM_training.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +36,7 @@
       <recent name="C:\Users\Summer\Documents\GitHub\riskControlMidterm" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.merge_data">
+  <component name="RunManager" selected="Python.lightGBM_training">
     <configuration name="city_feature_process" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -148,9 +144,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.lightGBM_training" />
         <item itemvalue="Python.merge_data" />
         <item itemvalue="Python.city_feature_process" />
-        <item itemvalue="Python.lightGBM_training" />
         <item itemvalue="Python.log_info_process" />
         <item itemvalue="Python.update_info_process" />
       </list>
@@ -221,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666147977892</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="train all update">
+      <created>1666160653206</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1666160653206</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -244,7 +247,8 @@
     <MESSAGE value="log_info_process finished" />
     <MESSAGE value="repaired2" />
     <MESSAGE value="lightGBM update" />
-    <option name="LAST_COMMIT_MESSAGE" value="lightGBM update" />
+    <MESSAGE value="train all update" />
+    <option name="LAST_COMMIT_MESSAGE" value="train all update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
