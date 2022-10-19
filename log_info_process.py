@@ -50,4 +50,4 @@ df2['between_late'] = abs(df2['latest_log'] - df2['earliest_trans']).astype('tim
 df2 = df2.drop(['earliest_trans', 'earliest_log', 'latest_log'], axis=1)
 
 # %% 保存数据
-df2.to_csv('data/train/loginfo_df.csv', index=True, encoding='utf-8')
+df2.to_csv('data/train/loginfo_df.csv', index=False, encoding='utf-8')

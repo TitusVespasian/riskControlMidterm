@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="repaired2">
+    <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lightGBM_final.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/train/loginfo_df.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/train/loginfo_df.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/train/train_all.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/train/train_all.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lightGBM_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/lightGBM_training.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log_info_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/log_info_process.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/merge_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/merge_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,8 +151,8 @@
       <list>
         <item itemvalue="Python.lightGBM_training" />
         <item itemvalue="Python.merge_data" />
-        <item itemvalue="Python.update_info_process" />
         <item itemvalue="Python.log_info_process" />
+        <item itemvalue="Python.update_info_process" />
         <item itemvalue="Python.city_feature_process" />
       </list>
     </recent_temporary>
