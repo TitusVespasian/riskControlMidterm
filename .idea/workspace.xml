@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="merge_data.py lightGBM_training.py update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean _and_process_master.py" beforeDir="false" afterPath="$PROJECT_DIR$/clean _and_process_master.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/train/Master_Training_Cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/train/Master_Training_Cleaned.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lightGBM_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/lightGBM_training.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +39,7 @@
       <recent name="C:\Users\Summer\Documents\GitHub\riskControlMidterm\EDA" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.merge_data">
+  <component name="RunManager" selected="Python.clean _and_process_master">
     <configuration name="city_and_province_process" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -148,11 +147,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.clean _and_process_master" />
+        <item itemvalue="Python.lightGBM_training" />
         <item itemvalue="Python.merge_data" />
         <item itemvalue="Python.city_and_province_process" />
         <item itemvalue="Python.lr_feature_selection" />
-        <item itemvalue="Python.clean _and_process_master" />
-        <item itemvalue="Python.lightGBM_training" />
       </list>
     </recent_temporary>
   </component>
@@ -266,14 +265,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lightGBM_training.py</url>
-          <line>25</line>
-          <option name="timeStamp" value="13" />
+          <url>file://$PROJECT_DIR$/clean _and_process_master.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lightGBM_training.py</url>
-          <line>21</line>
-          <option name="timeStamp" value="14" />
+          <url>file://$PROJECT_DIR$/clean _and_process_master.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/clean _and_process_master.py</url>
+          <line>88</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
