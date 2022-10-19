@@ -77,7 +77,7 @@ def clean_and_process_master(input_file_path, output_file_path):
         train_master.loc[(train_master[col].isnull(), col)] = mode_cols
 
     # 用均值填充缺失值
-    numeric_cols = []
+    # numeric_cols = []
     for col in train_master.columns:
         if col not in categoric_cols and col != u'Idx' and col != u'target' and col != 'ListingInfo':
             mean_cols = train_master[col].mean()
@@ -85,10 +85,12 @@ def clean_and_process_master(input_file_path, output_file_path):
 
     y_train = train_master['target'].values
 
-    # 剔除标准差几乎为零的特征项 TODO:删除小于1/4分位数的特征项 DONE
-    numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
-    new_df = train_master.select_dtypes(include=numerics).loc[:, train_master.quantile(0.25) < train_master.std()]
-    train_master = pd.concat([new_df, train_master.select_dtypes(exclude=numerics)], axis=1)
+    # 剔除标准差几乎为零的特征项 TODO:删除了几乎为0的两个 DONE
+    train_master.drop(['WeblogInfo_10','WeblogInfo_49'], axis=1, inplace=True)
+
+    # numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64'] 0.01*mean
+    # new_df = train_master.select_dtypes(include=numerics).loc[:, train_master.quantile(0.25) < train_master.std()]
+    # train_master = pd.concat([new_df, train_master.select_dtypes(exclude=numerics)], axis=1)
 
     # feature_std = train_master.std().sort_values(ascending=True)
     # %% 杂项
