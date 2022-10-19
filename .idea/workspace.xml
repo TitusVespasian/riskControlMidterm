@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="repaired2">
+    <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="train all update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log_info_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/log_info_process.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lightGBM_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/lightGBM_training.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/merge_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/merge_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,9 +36,12 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Summer\Documents\GitHub\riskControlMidterm" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Summer\Documents\GitHub\riskControlMidterm\EDA" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.lightGBM_training">
-    <configuration name="city_feature_process" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="clean _and_process_master" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -50,7 +53,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/city_feature_process.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/clean _and_process_master.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -80,7 +83,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="log_info_process" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="lr_feature_selection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -92,7 +95,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/log_info_process.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lr_feature_selection.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -146,10 +149,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.lightGBM_training" />
-        <item itemvalue="Python.merge_data" />
+        <item itemvalue="Python.lr_feature_selection" />
         <item itemvalue="Python.update_info_process" />
-        <item itemvalue="Python.log_info_process" />
-        <item itemvalue="Python.city_feature_process" />
+        <item itemvalue="Python.clean _and_process_master" />
+        <item itemvalue="Python.merge_data" />
       </list>
     </recent_temporary>
   </component>
@@ -204,7 +207,28 @@
       <option name="project" value="LOCAL" />
       <updated>1666095098450</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="lightGBM update">
+      <created>1666147854441</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1666147854442</updated>
+    </task>
+    <task id="LOCAL-00008" summary="lightGBM update">
+      <created>1666147977892</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1666147977892</updated>
+    </task>
+    <task id="LOCAL-00009" summary="train all update">
+      <created>1666160653206</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1666160653206</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -226,10 +250,24 @@
     <MESSAGE value="feature engineering finished" />
     <MESSAGE value="log_info_process finished" />
     <MESSAGE value="repaired2" />
-    <option name="LAST_COMMIT_MESSAGE" value="repaired2" />
+    <MESSAGE value="lightGBM update" />
+    <MESSAGE value="train all update" />
+    <option name="LAST_COMMIT_MESSAGE" value="train all update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/lightGBM_training.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/lightGBM_training.py</url>
+          <line>18</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
