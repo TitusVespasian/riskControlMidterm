@@ -3,7 +3,7 @@ import lightgbm as lgb
 # from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import  train_test_split
 from sklearn.model_selection import GridSearchCV
-# import re
+import re
 import merge_data
 import city_and_province_process
 
@@ -16,11 +16,12 @@ train_master=city_and_province_process.city_process(train_master)
 train_all=merge_data.merge_data(train_master,update_info_pd,log_info_pd)
 
 
-X = train_master.drop(['target'], axis=1).to_numpy()
-y = train_master.target.to_numpy()
+X = train_master.drop(['target'], axis=1)#.to_numpy()
+y = train_master.target#.to_numpy()
 #new_dict = {key:i for (i,key) in enumerate(X.columns)}
-#new_dict = {key:re.sub('[^A-Za-z0-9]+', '', key)+str(i) for (i,key) in enumerate(X.columns)}
-#canceData.rename(columns=new_dict, inplace=True)
+category_list=[]
+new_dict = {key:re.sub('[^A-Za-z0-9]+', '', key)+str(i) for (i,key) in enumerate(X.columns)}
+X.rename(columns=new_dict, inplace=True)
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0, test_size=0.2)
 params = {
     #'n_estimators':56,
