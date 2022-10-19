@@ -13,6 +13,7 @@ import xgboost as xgb
 from matplotlib.pylab import rcParams
 from sklearn import metrics
 from xgboost.sklearn import XGBClassifier
+import numpy as np
 
 check_none = set()
 
@@ -106,6 +107,7 @@ xgb1 = XGBClassifier(
 def province_selection(_train_master):
     dummies_19 = pd.get_dummies(
         _train_master.UserInfo_19, prefix="UserInfo_19")
+    #dummies_19['ramdom']=pd.DataFrame(np.random.randint(0, 2, size=(dummies_19.shape[0], 1)))
     score_imp = modelfit("UserInfo_19", xgb1, dummies_19, y_train)
 
     # _train_master["UserInfo_19"]=_train_master["UserInfo_19"].apply(lambda x:
@@ -116,7 +118,7 @@ def province_selection(_train_master):
         if (score_imp[score_imp['feature_score'] <= 25]['feature_name'] == iname).any():
             _train_master.loc[_train_master["UserInfo_19"]
                               == iname, "UserInfo_19"] = 'rest'
-    _train_master.join(dummies_19)
+    _train_master=_train_master.join(dummies_19)
     _train_master.drop("UserInfo_19", axis=1, inplace=True)
 
     dummies_7 = pd.get_dummies(_train_master.UserInfo_7, prefix="UserInfo_7")
@@ -126,7 +128,7 @@ def province_selection(_train_master):
         if (score_imp[score_imp['feature_score'] <= 46]['feature_name'] == iname).any():
             _train_master.loc[_train_master["UserInfo_7"]
                               == iname, "UserInfo_7"] = 'rest'
-    _train_master.join(dummies_7)
+    _train_master=_train_master.join(dummies_7)
     _train_master.drop("UserInfo_7", axis=1, inplace=True)
 
     return _train_master
