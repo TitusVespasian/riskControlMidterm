@@ -14,6 +14,7 @@ def encodingstr_cp(s, appendix):
     if s.find(appendix) != -1:
         s = s[:s.find(appendix)]
     return s
+
 check_none = set()
 city_level = {1: ['北京', '上海', '广州', '深圳'],
               1.5: ['成都', '重庆', '杭州', '武汉', '西安', '郑州', '青岛', '长沙', '天津', '苏州', '南京', '东莞', '沈阳', '合肥', '佛山'],
@@ -54,8 +55,6 @@ for icity in city_pos:
 
 avg_lo = sum_lo / len_c
 avg_al = sum_al / len_c
-
-
 
 def get_featurename(name):
     try:
