@@ -105,8 +105,8 @@ print(gsearch5.cv_results_, gsearch5.best_params_, gsearch5.best_score_)
 #{'num_leaves': 10, 'max_depth': 4, 'max_bin': 65, 'min_data_in_leaf': 101, 'feature_fraction': 0.6, 'bagging_fraction': 0.8, 'bagging_freq': 5, 'lambda_l1': 0.001, 'lambda_l2': 0.001, 'min_split_gain': 0.0}
 # %% 第七步：降低学习率，增加迭代次数，验证模型
 from sklearn import metrics
-model=lgb.LGBMClassifier(boosting_type='gbdt', objective='binary', metrics='auc', learning_rate=0.1,
-                                 n_estimators=1000, max_depth=4, num_leaves=10, max_bin=165, min_data_in_leaf=101,
+model=lgb.LGBMClassifier(boosting_type='gbdt', objective='binary', metrics='auc', learning_rate=0.01,
+                                 n_estimators=70, max_depth=4, num_leaves=10, max_bin=165, min_data_in_leaf=101,
                                  bagging_fraction=0.6, bagging_freq=5, feature_fraction=0.8,
                                  lambda_l1=0.001, lambda_l2=0.001,min_split_gain=0,is_unbalance=True)
 model.fit(X_train,y_train)
