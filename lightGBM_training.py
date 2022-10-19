@@ -3,35 +3,47 @@ import lightgbm as lgb
 # from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import  train_test_split
 from sklearn.model_selection import GridSearchCV
-import re
+# import re
+import merge_data
+import city_and_province_process
 
-canceData = pd.read_csv('data/train/train_all.csv',encoding='utf-8')
-X = canceData.drop(['target'],axis=1).to_numpy()
-y = canceData.target.to_numpy()
+
+train_master=pd.read_csv('./data/train/Master_Training_Cleaned.csv')
+update_info_pd=pd.read_csv('data/train/userupdate_df.csv')
+log_info_pd=pd.read_csv('data/train/loginfo_df.csv')
+train_master=city_and_province_process.city_process(train_master)
+
+train_all=merge_data.merge_data(train_master,update_info_pd,log_info_pd)
+
+
+X = train_master.drop(['target'], axis=1).to_numpy()
+y = train_master.target.to_numpy()
 #new_dict = {key:i for (i,key) in enumerate(X.columns)}
 #new_dict = {key:re.sub('[^A-Za-z0-9]+', '', key)+str(i) for (i,key) in enumerate(X.columns)}
 #canceData.rename(columns=new_dict, inplace=True)
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0, test_size=0.2)
-# params = {
-#     #'n_estimators':56,
-#     'boosting_type': 'gbdt',
-#     'objective': 'binary',
-#     'metric': 'auc',
-#     'nthread': 4,
-#     'learning_rate': 0.1,
-#     'num_leaves': 30,
-#     'max_depth': 5,
-#     'subsample': 0.8,
-#     'colsample_bytree': 0.8,
-#     'is_unbalance': 'true'
-# }
-#
-# # %% 第一步：学习率和迭代次数
-# data_train = lgb.Dataset(X_train, y_train)
-# cv_results = lgb.cv(params, data_train, num_boost_round=1000, nfold=5, stratified=False, shuffle=True, metrics='auc',
-#                     early_stopping_rounds=50, seed=0)
-# print('best n_estimators:', len(cv_results['auc-mean']))# 56
-# print('best cv score:', pd.Series(cv_results['auc-mean']).max())
+params = {
+    #'n_estimators':56,
+    'boosting_type': 'gbdt',
+    'objective': 'binary',
+    'metric': 'auc',
+    'nthread': 4,
+    'learning_rate': 0.1,
+    'num_leaves': 30,
+    'max_depth': 5,
+    'subsample': 0.8,
+    'colsample_bytree': 0.8,
+    'is_unbalance': 'true',
+    'feature_name': 'auto', # that's actually the default
+    'categorical_feature': 'auto' # that's actually the default
+}
+
+# %% 第一步：学习率和迭代次数
+data_train = lgb.Dataset(X_train, y_train)
+cv_results = lgb.cv(params, data_train, num_boost_round=1000, nfold=5, stratified=False, shuffle=True, metrics='auc',
+                    early_stopping_rounds=50, seed=0)
+print('best n_estimators:', len(cv_results['auc-mean']))# 56
+print('best cv score:', pd.Series(cv_results['auc-mean']).max())
 
 # %% 确定max_depth和num_leaves
 

@@ -63,6 +63,7 @@ def merge_data(_train_master, _train_userupdateinfo, _train_loginfo, output_file
     if output_file != "":
         train_all.to_csv(output_file, encoding='utf-8', index=False)
     # y_train = train_all.pop('target')
+    return train_all
 
 
 if __name__ == "__main__":
