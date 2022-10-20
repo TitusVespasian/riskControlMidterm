@@ -33,9 +33,6 @@ X_train, X_check, y_train, y_check = train_test_split(
     X, y, random_state=8, test_size=0.2, stratify=y)
 
 
-# %% train_model-1
-
-
 # %% 装载数据集，训练
 
 train_all = pd.read_csv("data/train/train_all.csv")
