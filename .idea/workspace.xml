@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="merge_data.py lightGBM_training.py update">
+      <change afterPath="$PROJECT_DIR$/random_forest_training.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lightGBM_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/lightGBM_training.py" afterDir="false" />
     </list>
@@ -39,7 +41,7 @@
       <recent name="C:\Users\Summer\Documents\GitHub\riskControlMidterm\EDA" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.clean _and_process_master">
+  <component name="RunManager" selected="Python.lightGBM_training">
     <configuration name="city_and_province_process" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -147,8 +149,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.clean _and_process_master" />
         <item itemvalue="Python.lightGBM_training" />
+        <item itemvalue="Python.clean _and_process_master" />
         <item itemvalue="Python.merge_data" />
         <item itemvalue="Python.city_and_province_process" />
         <item itemvalue="Python.lr_feature_selection" />
