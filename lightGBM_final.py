@@ -117,7 +117,9 @@ best_pa.update(gsearch5.best_params_)
 
 
 print(best_pa)
-#best_pa= {'n_estimators': 73, 'max_depth': 7, 'num_leaves': 15, 'max_bin': 65, 'min_data_in_leaf': 11, 'bagging_fraction': 0.6, 'bagging_freq': 0, 'feature_fraction': 0.8, 'lambda_l1': 0.001, 'lambda_l2': 0.001, 'min_split_gain': 0.0}
+#best_pa= {'n_estimators': 65, 'max_depth': 5, 'num_leaves': 15, 'max_bin': 65, 'min_data_in_leaf': 21, 'bagging_fraction': 0.6, 'bagging_freq': 0, 'feature_fraction': 0.8, 'lambda_l1': 1.0, 'lambda_l2': 0.1, 'min_split_gain': 0.0}
+#acc: 0.7573333333333333
+#auc: 0.6818677373355312
 # acc: 0.7623333333333333
 # auc: 0.6814672478483803
 # %% 第七步：降低学习率，增加迭代次数，验证模型
