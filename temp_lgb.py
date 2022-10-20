@@ -54,7 +54,7 @@ def temp():
     X = X.drop(['Idx0'], axis=1)
     import joblib
     clf = joblib.load('dota_model.pkl')
-    Y_res=clf.predict(X)
+    Y_res=clf.predict_proba(X)[:,1]
     df=pd.DataFrame(data={"target":Y_res})
     df=df.join(ID)
     df.to_csv("result.csv",index=False)

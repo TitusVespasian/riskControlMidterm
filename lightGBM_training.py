@@ -49,7 +49,7 @@ for icol in list_fea_str:
 
 X = X.drop(['Idx0'],axis=1)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=9, test_size=0.2, stratify=y)
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=5, test_size=0.2, stratify=y)
 # params = {
 #     # 'n_estimators':56,
 #     'boosting_type': 'gbdt',
@@ -180,14 +180,13 @@ clf = joblib.load('dota_model.pkl')
 #
 # # 模型预测
 # y_pred = gbm.predict(X_test, num_iteration=gbm.best_iteration_)
-y_pre = clf.predict_proba(X_test)
+y_pre = clf.predict_proba(X_test)[:,1]
 print(y_pre)
-y_pre=clf.predict(X_test)
-print(y_pre)
-print("acc:", metrics.accuracy_score(y_test, y_pre))
+
+#print("acc:", metrics.accuracy_score(y_test, y_pre))
 print("auc:", metrics.roc_auc_score(y_test, y_pre))
 
 ## 查看混淆矩阵 (预测值和真实值的各类情况统计矩阵)
-confusion_matrix_result = metrics.confusion_matrix(y_test,y_pre)
-print('The confusion matrix result:\n',confusion_matrix_result)
+# confusion_matrix_result = metrics.confusion_matrix(y_test,y_pre)
+# print('The confusion matrix result:\n',confusion_matrix_result)
 
