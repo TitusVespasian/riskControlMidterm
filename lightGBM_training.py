@@ -163,7 +163,7 @@ best_pa= {'n_estimators': 73, 'max_depth': 7, 'num_leaves': 15, 'max_bin': 65, '
 from sklearn import metrics
 
 model = lgb.LGBMClassifier(boosting_type='gbdt', objective='binary', metrics='auc', learning_rate=0.01,
-                           n_estimators=1000, max_depth=best_pa['max_depth'],
+                           n_estimators=500, max_depth=best_pa['max_depth'],
                            num_leaves=best_pa['num_leaves'], max_bin=best_pa['max_bin'],
                            min_data_in_leaf=best_pa['min_data_in_leaf'],
                            bagging_fraction=best_pa['bagging_fraction'], bagging_freq=best_pa['bagging_freq'],
@@ -171,14 +171,12 @@ model = lgb.LGBMClassifier(boosting_type='gbdt', objective='binary', metrics='au
                            lambda_l1=best_pa['lambda_l1'], lambda_l2=best_pa['lambda_l2'],
                            min_split_gain=best_pa['min_split_gain'], is_unbalance=True)
 model.fit(X_train, y_train)
-
-# 模型存储
-model.booster_.savemodel("dota_model.txt")
-# 模型加载
-clf_loads = lgb.Booster(model_file='dota_model.txt')
+import joblib
+joblib.dump(model, 'dota_model.pkl')
+clf = joblib.load('dota_model.pkl')
 #
 # # 模型预测
 # y_pred = gbm.predict(X_test, num_iteration=gbm.best_iteration_)
-y_pre = clf_loads.predict(X_test)
+y_pre = clf.predict(X_test)
 print("acc:", metrics.accuracy_score(y_test, y_pre))
 print("auc:", metrics.roc_auc_score(y_test, y_pre))
