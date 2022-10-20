@@ -10,6 +10,8 @@ import xgboost as xgb
 from xgboost.sklearn import XGBClassifier
 import sklearn.preprocessing as preprocessing
 from sklearn.model_selection import train_test_split
+from sklearn.model_selection import StratifiedKFold  # 交叉验证
+from sklearn.model_selection import GridSearchCV
 from sklearn import metrics
 
 import pickle
@@ -30,19 +32,68 @@ adjusted_weight = round(negative_num / positive_num, 2)  # 正例的权值，保
 X_train, X_check, y_train, y_check = train_test_split(
     X, y, random_state=1, test_size=0.2, stratify=y)
 
+
 # %% train_model-1
 
+
+# %% 装载数据集，训练
+
+train_all = pd.read_csv("./train_all.csv")
+X = train_all.drop("target", axis=1)
+y = train_all.pop('target')
+
+
+# 正样本的数目显著少于负样本，故计算权重
+negative_num = y.value_counts()[0]
+positive_num = y.value_counts()[1]
+adjusted_weight = round(negative_num / positive_num, 2)  # 正例的权值，保留2位小数
+
+X_train, X_check, y_train, y_check = train_test_split(
+    X, y, random_state=1, test_size=0.2, stratify=y)
+
+
+# %% train_model-1
+
+
 xgb1 = XGBClassifier(
-    learning_rate=0.3,
-    # n_estimators =,
+    learning_rate=0.1,
+    n_estimators=70,
     max_depth=5,
-    min_child_weight=3,
-    gamma=0.3,
+    min_child_weight=7,
+    gamma=0,
     # subsample=,
     nthread=-1,
     scale_pos_weight=adjusted_weight,
-    # tree_method='gpu_hist'
+    # 如果可以，在远端服务器运行，把下面的注释放开以获得显卡支持
+    # tree_method='gpu_hist',
+    random_state=1,
+    use_label_encoder=False,
 )
+
+param_grid = {
+    'learning_rate': [0.05, 0.1, 0.2, 0.3],
+    'n_estimators': [10, 20, 30, 50, 70],
+    'min_child_weight': [3, 5, 7],
+    'gamma': [0, 0.1, 0.2, 0.35],
+}
+
+
+kflod = StratifiedKFold(n_splits=7, shuffle=True, random_state=1)
+
+grid_search = GridSearchCV(
+    xgb1, param_grid, scoring='roc_auc', n_jobs=-1, cv=kflod)
+
+# %% GridSearchCV fit
+grid_result = grid_search.fit(X, y, eval_metric="auc", verbose=4)  # 运行网格搜索
+
+# %%
+print(grid_result.best_score_, grid_search.best_params_)
+
+# 如果需要每一组参数的评估值，放开下面的注释
+# means = grid_result.cv_results_['mean_test_score']
+# params = grid_result.cv_results_['params']
+# for mean, param in zip(means, params):
+#     print("%f [with] %r" % (mean, param))
 
 # %% 模型训练与检查
 xgb1.fit(X_train, y_train)
@@ -56,6 +107,8 @@ test_auc = metrics.roc_auc_score(y_check, y_predict)  # 我分出来的验证集
 print("AUC(%):", test_auc)
 
 
-# %% check
+# %% save model
 
-print(xgb1.score(X_check, y_check))
+outfile = open("./saved_model/lr_model.pickle", "wb")
+pickle.dump(xgb1, outfile)
+outfile.close()
