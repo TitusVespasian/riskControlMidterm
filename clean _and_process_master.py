@@ -24,7 +24,7 @@ def encodingstr(s, appendix):
         return s
 
 
-def clean_and_process_master(input_file_path, output_file_path,if_test=False):
+def clean_and_process_master(input_file_path, output_file_path, if_test=False):
     # %% 对数据进行读入
 
     # 双引号前面的r表示不转义
@@ -83,10 +83,10 @@ def clean_and_process_master(input_file_path, output_file_path,if_test=False):
             mean_cols = train_master[col].mean()
             train_master.loc[(train_master[col].isnull(), col)] = mean_cols
 
-    #y_train = train_master['target'].values
+    # y_train = train_master['target'].values
 
     # 剔除标准差几乎为零的特征项 TODO:删除了几乎为0的两个 DONE
-    train_master.drop(['WeblogInfo_10','WeblogInfo_49'], axis=1, inplace=True)
+    train_master.drop(['WeblogInfo_10', 'WeblogInfo_49'], axis=1, inplace=True)
 
     # numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64'] 0.01*mean
     # new_df = train_master.select_dtypes(include=numerics).loc[:, train_master.quantile(0.25) < train_master.std()]
@@ -125,15 +125,23 @@ def clean_and_process_master(input_file_path, output_file_path,if_test=False):
     train_master['day'] = pd.DatetimeIndex(train_master.ListingInfo).day
     train_master.drop(['ListingInfo'], axis=1, inplace=True)
 
-    if if_test==False:
+    if if_test == False:
         train_master['target'] = train_master['target'].astype(str)
 
     # %% 将处理好的数据导出到工作目录
 
     # train_master.to_csv(path_or_buf="./data/train/Master_Training_Cleaned.csv", index=False)
     train_master.to_csv(path_or_buf=output_file_path, index=False)
+    return train_master
 
 
 if __name__ == "__main__":
-    # clean_and_process_master(r"./data/train/Master_Training_Set.csv", r"./data/train/Master_Training_Cleaned.csv")
-    clean_and_process_master(r"./data/test/Master_Test_Set.csv",r"./data/test/Master_Test_Cleaned.csv",True)
+    train_master_ = clean_and_process_master(r"./data/train/Master_Training_Set.csv",
+                                             r"./data/train/Master_Training_Cleaned.csv")
+    test_master_ = clean_and_process_master(r"./data/test/Master_Test_Set.csv", r"./data/test/Master_Test_Cleaned.csv",
+                                            True)
+    print(len(train_master_))
+    print(len(test_master_))
+    all_master = pd.concat((train_master_, test_master_), axis=0, join='outer')
+    print(len(all_master))
+    all_master.to_csv(path_or_buf=r'./data/all/all_set.csv', index=False)

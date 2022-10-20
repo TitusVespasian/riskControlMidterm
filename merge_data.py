@@ -25,7 +25,7 @@ import pandas as pd
 # %% load_data
 
 # %% merge
-def merge_data(_train_master, _train_userupdateinfo, _train_loginfo, output_file=""):
+def merge_data(_train_master, _train_userupdateinfo, _train_loginfo, output_file="",if_all=False):
     # 将上述三张表的信息进行合并
 
     train_all = pd.merge(_train_master, _train_userupdateinfo, how='left', on='Idx')
@@ -56,7 +56,8 @@ def merge_data(_train_master, _train_userupdateinfo, _train_loginfo, output_file
     # %% 将train_all全部数值化，最后输出
 
     train_all['Idx'] = train_all['Idx'].astype(np.int64)
-    train_all['target'] = train_all['target'].astype(np.int64)
+    if if_all==False:
+        train_all['target'] = train_all['target'].astype(np.int64)
 
     # train_all = pd.get_dummies(train_all)
     # train_all.head()
@@ -67,7 +68,22 @@ def merge_data(_train_master, _train_userupdateinfo, _train_loginfo, output_file
 
 
 if __name__ == "__main__":
-    train_master = pd.read_csv('data/train/Master_Training_Modified.csv', encoding='utf-8')
-    train_userupdateinfo = pd.read_csv('data/train/userupdate_df.csv', encoding='utf-8')
-    train_loginfo = pd.read_csv('data/train/loginfo_df.csv', encoding='utf-8')
-    merge_data(train_master, train_userupdateinfo, train_loginfo, 'data/train/train_all.csv')
+    train=False
+    if train:
+        train_master = pd.read_csv('data/train/Master_Training_Modified.csv', encoding='utf-8')
+        train_userupdateinfo = pd.read_csv('data/train/userupdate_df.csv', encoding='utf-8')
+        train_loginfo = pd.read_csv('data/train/loginfo_df.csv', encoding='utf-8')
+        merge_data(train_master, train_userupdateinfo, train_loginfo, 'data/train/train_all.csv')
+    else:
+        all_master = pd.read_csv('data/all/all_Modified.csv', encoding='utf-8')
+
+        train_userupdateinfo = pd.read_csv('data/train/userupdate_df.csv', encoding='utf-8')
+        train_loginfo = pd.read_csv('data/train/loginfo_df.csv', encoding='utf-8')
+
+        test_userupdateinfo = pd.read_csv('data/test/test_userupdate_df.csv', encoding='utf-8')
+        test_loginfo = pd.read_csv('data/test/test_loginfo_df.csv', encoding='utf-8')
+
+        all_userupdateinfo=pd.concat((train_userupdateinfo,test_userupdateinfo),axis=0,join="outer")
+        all_loginfo=pd.concat((train_loginfo,test_loginfo),axis=0,join="outer")
+        all=merge_data(all_master, all_userupdateinfo, all_loginfo, 'data/all/train_test_all.csv',if_all=True)
+        print(all.shape)

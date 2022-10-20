@@ -146,10 +146,17 @@ def city_process(_train_master):
 
 
 if __name__ == "__main__":
-
-    train_master = pd.read_csv(r"./data/train/Master_Training_Cleaned_expCity.csv")
-    y_train = train_master["target"].values
-    train_master = province_selection(train_master)
-    train_master = city_process(train_master)
-    train_master.to_csv(r"./data/train/Master_Training_Modified.csv", index=False, sep=',')
-    print(train_master.shape)
+    train=False
+    if train:
+        train_master = pd.read_csv(r"./data/train/Master_Training_Cleaned_expCity.csv")
+        y_train = train_master["target"].values
+        train_master = province_selection(train_master)
+        train_master = city_process(train_master)
+        train_master.to_csv(r"./data/train/Master_Training_Modified.csv", index=False, sep=',')
+        print(train_master.shape)
+    else:
+        all_master = pd.read_csv(r"./data/all/all_Cleaned_expCity.csv")
+        all_master = province_selection(all_master)
+        all_master = city_process(all_master)
+        all_master.to_csv(r"./data/all/all_Modified.csv", index=False, sep=',')
+        print(all_master.shape)

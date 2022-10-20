@@ -192,16 +192,19 @@ print('The confusion matrix result:\n',confusion_matrix_result)
 
 def temp():
     train_master = pd.read_csv('./data/train/Master_Training_Cleaned.csv')
+    test_master = city_and_province_process.city_process(train_master)
     update_info_pd = pd.read_csv('data/train/userupdate_df.csv')
     log_info_pd = pd.read_csv('data/train/loginfo_df.csv')
 
-    test_master=pd.read_csv('./data/train/Master_Training_Cleaned.csv')
+    test_master=pd.read_csv('./data/test/Master_Test_Cleaned.csv')
     test_master=city_and_province_process.city_process(test_master)
-    test_update_info_pd = pd.read_csv('data/train/userupdate_df.csv')
-
-    train_master = city_and_province_process.city_process(train_master)
+    test_update_info_pd = pd.read_csv('data/test/test_userupdate_df.csv')
+    test_log_info_pd=pd.read_csv('./data/test/test_loginfo_df.csv')
 
     train_all = merge_data.merge_data(train_master, update_info_pd, log_info_pd)
+    test_all=merge_data.merge_data(test_master,test_log_info_pd,test_log_info_pd)
+
+    train_all=train_all.drop(['target'], axis=1)
 
     X = train_master.drop(['target'], axis=1)  # .to_numpy()
     y = train_master.target  # .to_numpy()
