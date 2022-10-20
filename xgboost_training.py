@@ -30,7 +30,7 @@ positive_num = y.value_counts()[1]
 adjusted_weight = round(negative_num / positive_num, 2)  # 正例的权值，保留2位小数
 
 X_train, X_check, y_train, y_check = train_test_split(
-    X, y, random_state=1, test_size=0.2, stratify=y)
+    X, y, random_state=8, test_size=0.2, stratify=y)
 
 
 # %% train_model-1
@@ -38,7 +38,7 @@ X_train, X_check, y_train, y_check = train_test_split(
 
 # %% 装载数据集，训练
 
-train_all = pd.read_csv("./train_all.csv")
+train_all = pd.read_csv("data/train/train_all.csv")
 X = train_all.drop("target", axis=1)
 y = train_all.pop('target')
 
@@ -49,7 +49,7 @@ positive_num = y.value_counts()[1]
 adjusted_weight = round(negative_num / positive_num, 2)  # 正例的权值，保留2位小数
 
 X_train, X_check, y_train, y_check = train_test_split(
-    X, y, random_state=1, test_size=0.2, stratify=y)
+    X, y, random_state=8, test_size=0.2, stratify=y)
 
 
 # %% train_model-1
@@ -58,7 +58,7 @@ X_train, X_check, y_train, y_check = train_test_split(
 xgb1 = XGBClassifier(
     learning_rate=0.1,
     n_estimators=70,
-    max_depth=5,
+    max_depth=3,
     min_child_weight=7,
     gamma=0,
     # subsample=,
@@ -79,14 +79,13 @@ param_grid = {
 
 
 kflod = StratifiedKFold(n_splits=7, shuffle=True, random_state=1)
+# %% GridSearchCV fit
 
 grid_search = GridSearchCV(
     xgb1, param_grid, scoring='roc_auc', n_jobs=-1, cv=kflod)
 
-# %% GridSearchCV fit
 grid_result = grid_search.fit(X, y, eval_metric="auc", verbose=4)  # 运行网格搜索
 
-# %%
 print(grid_result.best_score_, grid_search.best_params_)
 
 # 如果需要每一组参数的评估值，放开下面的注释
@@ -94,6 +93,7 @@ print(grid_result.best_score_, grid_search.best_params_)
 # params = grid_result.cv_results_['params']
 # for mean, param in zip(means, params):
 #     print("%f [with] %r" % (mean, param))
+
 
 # %% 模型训练与检查
 xgb1.fit(X_train, y_train)
