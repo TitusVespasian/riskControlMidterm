@@ -55,4 +55,5 @@ def log_info_process(input_file_path, output_file_path):
 
 
 if __name__ == "__main__":
-    log_info_process(r"./data/train/LogInfo_Training_Set.csv", r"./data/train/loginfo_df.csv")
+    # log_info_process(r"./data/train/LogInfo_Training_Set.csv", r"./data/train/loginfo_df.csv")
+    log_info_process(r"./data/test/LogInfo_Test_Set.csv", r"./data/test/test_loginfo_df.csv")

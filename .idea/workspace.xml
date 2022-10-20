@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="lightGBM_training final">
-      <change afterPath="$PROJECT_DIR$/lightGBM_quickfix.py" afterDir="false" />
+    <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="lightGBM_training update">
+      <change afterPath="$PROJECT_DIR$/data/test/Master_Test_Cleaned.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/test/test_loginfo_df.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/merge_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/process_test_on_lgb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean _and_process_master.py" beforeDir="false" afterPath="$PROJECT_DIR$/clean _and_process_master.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dota_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/dota_model.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lightGBM_final.py" beforeDir="false" afterPath="$PROJECT_DIR$/lightGBM_final.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lightGBM_quickfix.py" beforeDir="false" afterPath="$PROJECT_DIR$/lightGBM_quickfix.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lightGBM_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/lightGBM_training.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log_info_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/log_info_process.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/update_info_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/update_info_process.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +27,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -41,7 +55,7 @@
       <recent name="C:\Users\Summer\Documents\GitHub\riskControlMidterm\EDA" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.lightGBM_quickfix">
+  <component name="RunManager" selected="Python.update_info_process">
     <configuration name="clean _and_process_master" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -55,27 +69,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/clean _and_process_master.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="lightGBM_final" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="riskControlMidterm" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lightGBM_final.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -126,7 +119,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="xgboost_training" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="log_info_process" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -138,7 +131,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/xgboost_training.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/log_info_process.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="update_info_process" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="riskControlMidterm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/update_info_process.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -149,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.lightGBM_quickfix" />
-        <item itemvalue="Python.lightGBM_training" />
-        <item itemvalue="Python.lightGBM_final" />
-        <item itemvalue="Python.xgboost_training" />
+        <item itemvalue="Python.update_info_process" />
+        <item itemvalue="Python.log_info_process" />
         <item itemvalue="Python.clean _and_process_master" />
+        <item itemvalue="Python.lightGBM_training" />
+        <item itemvalue="Python.lightGBM_quickfix" />
       </list>
     </recent_temporary>
   </component>
@@ -243,7 +257,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666237781268</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="lightGBM_training update">
+      <created>1666246685385</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1666246685385</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -269,21 +290,12 @@
     <MESSAGE value="train all update" />
     <MESSAGE value="merge_data.py lightGBM_training.py update" />
     <MESSAGE value="lightGBM_training final" />
-    <option name="LAST_COMMIT_MESSAGE" value="lightGBM_training final" />
+    <MESSAGE value="lightGBM_training update" />
+    <option name="LAST_COMMIT_MESSAGE" value="lightGBM_training update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/clean _and_process_master.py</url>
-          <line>38</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/clean _and_process_master.py</url>
-          <line>35</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/clean _and_process_master.py</url>
           <line>88</line>

@@ -186,9 +186,12 @@ import joblib
 
 joblib.dump(model, 'dota_model.pkl')
 clf = joblib.load('dota_model.pkl')
-#
-# # 模型预测
+
+# 模型预测
 # y_pred = gbm.predict(X_test, num_iteration=gbm.best_iteration_)
+# {'n_estimators': 93, 'max_depth': 4, 'num_leaves': 10, 'max_bin': 185, 'min_data_in_leaf': 101, 'bagging_fraction': 0.6, 'bagging_freq': 0, 'feature_fraction': 0.8, 'lambda_l1': 1e-05, 'lambda_l2': 0.001, 'min_split_gain': 0.0}
+# acc: 0.7181666666666666
+# auc: 0.6668982995421845
 y_pre = clf.predict(X_test)
 print("acc:", metrics.accuracy_score(y_test, y_pre))
 print("auc:", metrics.roc_auc_score(y_test, y_pre))

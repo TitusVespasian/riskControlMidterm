@@ -95,4 +95,6 @@ def update_info_process(input_file_path,medium_file_path, output_file_path):
     userupdate_df.to_csv( output_file_path, index=False, encoding='utf-8')
 
 if __name__ == "__main__":
-    update_info_process(r"./data/train/Userupdate_Info_Training_Set.csv",r"./data/train/userupdate_Modified.csv", r"./data/train/userupdate_df.csv")
+    # update_info_process(r"./data/train/Userupdate_Info_Training_Set.csv",r"./data/train/userupdate_Modified.csv", r"./data/train/userupdate_df.csv")
+    update_info_process(r"./data/test/Userupdate_Info_Test_Set.csv", r"./data/test/test_userupdate_Modified.csv",
+                        r"./data/test/test_userupdate_df.csv")

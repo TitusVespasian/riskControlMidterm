@@ -10,6 +10,34 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\test\Userupdate_Info_Test_Set.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\test\test_loginfo_df.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\test\test_userupdate_Modified.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\test\test_userupdate_df.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\train\LogInfo_Training_Set.csv">
           <value>
             <Attribute>

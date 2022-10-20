@@ -24,7 +24,7 @@ def encodingstr(s, appendix):
         return s
 
 
-def clean_and_process_master(input_file_path, output_file_path):
+def clean_and_process_master(input_file_path, output_file_path,if_test=False):
     # %% 对数据进行读入
 
     # 双引号前面的r表示不转义
@@ -83,7 +83,7 @@ def clean_and_process_master(input_file_path, output_file_path):
             mean_cols = train_master[col].mean()
             train_master.loc[(train_master[col].isnull(), col)] = mean_cols
 
-    y_train = train_master['target'].values
+    #y_train = train_master['target'].values
 
     # 剔除标准差几乎为零的特征项 TODO:删除了几乎为0的两个 DONE
     train_master.drop(['WeblogInfo_10','WeblogInfo_49'], axis=1, inplace=True)
@@ -125,7 +125,8 @@ def clean_and_process_master(input_file_path, output_file_path):
     train_master['day'] = pd.DatetimeIndex(train_master.ListingInfo).day
     train_master.drop(['ListingInfo'], axis=1, inplace=True)
 
-    train_master['target'] = train_master['target'].astype(str)
+    if if_test==False:
+        train_master['target'] = train_master['target'].astype(str)
 
     # %% 将处理好的数据导出到工作目录
 
@@ -134,4 +135,5 @@ def clean_and_process_master(input_file_path, output_file_path):
 
 
 if __name__ == "__main__":
-    clean_and_process_master(r"./data/train/Master_Training_Set.csv", r"./data/train/Master_Training_Cleaned.csv")
+    # clean_and_process_master(r"./data/train/Master_Training_Set.csv", r"./data/train/Master_Training_Cleaned.csv")
+    clean_and_process_master(r"./data/test/Master_Test_Set.csv",r"./data/test/Master_Test_Cleaned.csv",True)
