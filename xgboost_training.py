@@ -48,6 +48,8 @@ negative_num = y.value_counts()[0]
 positive_num = y.value_counts()[1]
 adjusted_weight = round(negative_num / positive_num, 2)  # 正例的权值，保留2位小数
 
+
+# _train后缀是训练集和验证集的
 X_train, X_check, y_train, y_check = train_test_split(
     X, y, random_state=8, test_size=0.2, stratify=y)
 
@@ -84,7 +86,8 @@ kflod = StratifiedKFold(n_splits=7, shuffle=True, random_state=1)
 grid_search = GridSearchCV(
     xgb1, param_grid, scoring='roc_auc', n_jobs=-1, cv=kflod)
 
-grid_result = grid_search.fit(X, y, eval_metric="auc", verbose=4)  # 运行网格搜索
+grid_result = grid_search.fit(
+    X_train, y_train, eval_metric="auc", verbose=4)  # 运行网格搜索
 
 print(grid_result.best_score_, grid_search.best_params_)
 
