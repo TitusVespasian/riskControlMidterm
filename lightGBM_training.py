@@ -164,7 +164,7 @@ best_pa= {'n_estimators': 73, 'max_depth': 7, 'num_leaves': 15, 'max_bin': 65, '
 # %% 第七步：降低学习率，增加迭代次数，验证模型
 from sklearn import metrics
 
-model = lgb.LGBMClassifier(boosting_type='gbdt', objective='binary', metrics='auc', learning_rate=0.01,
+model = lgb.LGBMClassifier(boosting_type='gbdt', objective='binary', metrics='auc', learning_rate=0.1,
                            max_depth=best_pa['max_depth'],
                            num_leaves=best_pa['num_leaves'], max_bin=best_pa['max_bin'],
                            min_data_in_leaf=best_pa['min_data_in_leaf'],
@@ -172,7 +172,7 @@ model = lgb.LGBMClassifier(boosting_type='gbdt', objective='binary', metrics='au
                            feature_fraction=best_pa['feature_fraction'],
                            lambda_l1=best_pa['lambda_l1'], lambda_l2=best_pa['lambda_l2'],
                            min_split_gain=best_pa['min_split_gain'],
-                           n_estimators=1000, is_unbalance=True)
+                           n_estimators=73, is_unbalance=True)
 model.fit(X_train, y_train)
 import joblib
 joblib.dump(model, 'dota_model.pkl')
@@ -186,7 +186,19 @@ print(y_pre)
 #print("acc:", metrics.accuracy_score(y_test, y_pre))
 print("auc:", metrics.roc_auc_score(y_test, y_pre))
 
+model.fit(X,y)
+import joblib
+joblib.dump(model, 'dota_model.pkl')
+test_set=pd.read_csv("data/all/all_set.csv")
+# test_set=test_set[test_set["target"].isnull()]
+# ID=test_set["Idx"]
+# test_set=test_set.drop(["target","Idx"],axis=1)
+# Y_res=model.predict_proba(test_set)[:,1]
+# df=pd.DataFrame(data={"target":Y_res})
+# df=df.join(ID)
+# df.to_csv("result.csv")
 ## 查看混淆矩阵 (预测值和真实值的各类情况统计矩阵)
 # confusion_matrix_result = metrics.confusion_matrix(y_test,y_pre)
 # print('The confusion matrix result:\n',confusion_matrix_result)
 #auc: 0.7571063603662525
+pass

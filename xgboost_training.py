@@ -56,8 +56,8 @@ X_train, X_check, y_train, y_check = train_test_split(
 
 
 xgb1 = XGBClassifier(
-    learning_rate=0.1,
-    n_estimators=70,
+    learning_rate=0.01,
+    n_estimators=1000,
     max_depth=3,
     min_child_weight=7,
     gamma=0,

@@ -45,16 +45,16 @@ X_train, X_check, y_train, y_check = train_test_split(
 # %% 模型的保存，载入与检查
 
 lr = LogisticRegression(
-    penalty='l2',
+    penalty='l1',
     class_weight="balanced",  # 平衡权重
     random_state=1,  # 固定随机数种子
     max_iter=9000,
-    n_jobs=-1  # 使用全部的CPU。但是liblinear的时候没用
+    n_jobs=-1,  # 使用全部的CPU。但是liblinear的时候没用
+    solver='saga'
 )
 
 param_grid = {
-    'C': [0.6, 0.8, 1.0],
-    'solver': ['sag', 'saga'],
+    'C': [0.01,1 ,100],
 }
 
 kflod = StratifiedKFold(n_splits=5, shuffle=True, random_state=1)

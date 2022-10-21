@@ -140,10 +140,11 @@ def lr_feature_select(_train_master):
 
     # 'UserInfo_23'
     print(_train_master['UserInfo_23'].value_counts())
+    dummies_UserInfo_23=pd.get_dummies(_train_master.UserInfo_23, prefix="UserInfo_23")
     # len=27
     _train_master = _train_master.join(pd.get_dummies(_train_master.UserInfo_23, prefix="UserInfo_23"))
     _train_master.drop('UserInfo_23', axis=1, inplace=True)
-    # modelfit(xgb1, dummies_UserInfo_23, y_train)
+    #modelfit(xgb1, dummies_UserInfo_23, y_train)
 
     # 'UserInfo_24'
     print(_train_master['UserInfo_24'].value_counts())
@@ -174,6 +175,9 @@ def lr_feature_select(_train_master):
 
     # 'Education_Info4'
     print(_train_master['Education_Info4'].value_counts())
+    dummy_EI4=pd.get_dummies(_train_master.Education_Info4, prefix="Education_Info4")
+    modelfit(xgb1, dummy_EI4, y_train)
+
     # len=6
     _train_master = _train_master.join(pd.get_dummies(_train_master.Education_Info4, prefix="Education_Info4"))
     _train_master.drop('Education_Info4', axis=1, inplace=True)
@@ -216,8 +220,8 @@ def lr_feature_select(_train_master):
 
 # modelfit(xgb1, dummies_UserInfo_2, y_train)
 if __name__ == "__main__":
-    train_master = pd.read_csv(r"./data/train/Master_Training_Cleaned.csv")
+    train_master = pd.read_csv(r"../data/train/Master_Training_Cleaned.csv")
     y_train = train_master["target"].values
     train_master = lr_feature_select(train_master)
-    train_master.to_csv(r"./data/train/Master_Training_Cleaned_expCity.csv", index=False, sep=',')
+    train_master.to_csv(r"../data/train/Master_Training_Cleaned_expCity.csv", index=False, sep=',')
 
