@@ -19,7 +19,7 @@ model = lgb.LGBMClassifier(boosting_type='gbdt', objective='binary', metrics='au
                            feature_fraction=best_pa['feature_fraction'],
                            lambda_l1=best_pa['lambda_l1'], lambda_l2=best_pa['lambda_l2'],
                            min_split_gain=best_pa['min_split_gain'],
-                           n_estimators=1000, is_unbalance=True)
+                           n_estimators=1000)
 
 
 def temp():
@@ -93,11 +93,14 @@ def temp():
     train_all = X[X["target"].notnull()]
     test_all = X[X["target"].isnull()]
 
-    ID = test_all['Idx0'].rename('Idx')
+    from imblearn.over_sampling import SMOTE
     train_all = train_all.drop(['Idx0'], axis=1)
+    X_resampled, y_resampled = SMOTE().fit_resample(train_all.drop(['target'], axis=1), train_all['target'])
+    ID = test_all['Idx0'].rename('Idx')
+
     test_all = test_all.drop(['Idx0'], axis=1)
 
-    model.fit(train_all.drop(['target'], axis=1), train_all['target'])
+    model.fit(X_resampled, y_resampled)
     import joblib
     joblib.dump(model, 'dota_model.pkl')
     clf = joblib.load('dota_model.pkl')

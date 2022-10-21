@@ -83,6 +83,7 @@ def clean_and_process_master(input_file_path, output_file_path, if_test=False):
             mean_cols = train_master[col].mean()
             train_master.loc[(train_master[col].isnull(), col)] = mean_cols
 
+
     # y_train = train_master['target'].values
 
     # 剔除标准差几乎为零的特征项 TODO:删除了几乎为0的两个 DONE

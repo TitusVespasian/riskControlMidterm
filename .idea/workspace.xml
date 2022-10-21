@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="merge_model changes&#10;xgboost bagging">
-      <change afterPath="$PROJECT_DIR$/blending_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/more_lgb.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/province_lgb.py" afterDir="false" />
+    <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="finish">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EDA/EDAlr_feature_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/EDA/EDAlr_feature_selection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/all/all_Cleaned_expCity.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/all/all_Cleaned_expCity.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/train/Master_Training_Cleaned_expCity.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/train/Master_Training_Cleaned_expCity.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EDA/EDA_master_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/EDA/EDA_master_process.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean _and_process_master.py" beforeDir="false" afterPath="$PROJECT_DIR$/clean _and_process_master.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dota_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/dota_model.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lightGBM_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/lightGBM_training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lr_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/lr_training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/merge_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/stack_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lightGBM_final.py" beforeDir="false" afterPath="$PROJECT_DIR$/lightGBM_final.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/more_lgb.py" beforeDir="false" afterPath="$PROJECT_DIR$/more_lgb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/process_test_on_lgb.py" beforeDir="false" afterPath="$PROJECT_DIR$/smote_lgb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/random_forest_training2.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/result.csv" beforeDir="false" afterPath="$PROJECT_DIR$/result.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/saved_model/lr_model.pickle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/saved_model/xgboost_model.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/saved_model/xgboost_model.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp_lgb.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_lgb.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xgboost_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/xgboost_training.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,11 +59,12 @@
       <recent name="C:\Users\Summer\Documents\GitHub\riskControlMidterm" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Summer\Documents\GitHub\riskControlMidterm" />
       <recent name="C:\Users\Summer\Documents\GitHub\riskControlMidterm\EDA" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.xgboost_training">
-    <configuration name="lightGBM_training" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.smote_lgb">
+    <configuration name="EDA_master_process" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -71,11 +72,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/EDA" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lightGBM_training.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/EDA/EDA_master_process.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -84,7 +85,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="more_lgb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="lightGBM_final" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -96,7 +97,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/more_lgb.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lightGBM_final.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -105,7 +106,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="province_lgb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="random_forest_training2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -117,7 +118,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/province_lgb.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/random_forest_training2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -126,7 +127,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="temp_lgb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="smote_lgb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="riskControlMidterm" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -138,7 +139,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/temp_lgb.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/smote_lgb.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,11 +171,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.smote_lgb" />
+        <item itemvalue="Python.lightGBM_final" />
+        <item itemvalue="Python.EDA_master_process" />
+        <item itemvalue="Python.random_forest_training2" />
         <item itemvalue="Python.xgboost_training" />
-        <item itemvalue="Python.more_lgb" />
-        <item itemvalue="Python.temp_lgb" />
-        <item itemvalue="Python.lightGBM_training" />
-        <item itemvalue="Python.province_lgb" />
       </list>
     </recent_temporary>
   </component>
@@ -306,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666314427125</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="finish">
+      <created>1666341005218</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1666341005218</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -337,7 +345,8 @@
     <MESSAGE value="small change" />
     <MESSAGE value="small change2" />
     <MESSAGE value="merge_model changes&#10;xgboost bagging" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge_model changes&#10;xgboost bagging" />
+    <MESSAGE value="finish" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -361,11 +370,6 @@
           <url>file://$PROJECT_DIR$/lightGBM_training.py</url>
           <line>203</line>
           <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/EDA/EDAlr_feature_selection.py</url>
-          <line>210</line>
-          <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/more_lgb.py</url>

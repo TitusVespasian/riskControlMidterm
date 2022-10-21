@@ -143,3 +143,4 @@ clf = joblib.load('dota_model.pkl')
 y_pre = clf.predict_proba(X_test)[:,1]
 #print("acc:", metrics.accuracy_score(y_test, y_pre))
 print("auc:", metrics.roc_auc_score(y_test, y_pre))
+#auc: 0.7536763114513698
