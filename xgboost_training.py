@@ -8,6 +8,7 @@ import matplotlib.pylab as plt
 
 import xgboost as xgb
 from xgboost.sklearn import XGBClassifier
+from sklearn.ensemble import BaggingClassifier
 import sklearn.preprocessing as preprocessing
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import StratifiedKFold  # 交叉验证
@@ -68,25 +69,25 @@ xgb1 = XGBClassifier(
     random_state=1,
     use_label_encoder=False,
 )
-
-param_grid = {
-    'learning_rate': [0.05, 0.1, 0.2, 0.3],
-    'n_estimators': [10, 20, 30, 50, 70],
-    'min_child_weight': [3, 5, 7],
-    'gamma': [0, 0.1, 0.2, 0.35],
-}
-
-
-kflod = StratifiedKFold(n_splits=7, shuffle=True, random_state=1)
-# %% GridSearchCV fit
-
-grid_search = GridSearchCV(
-    xgb1, param_grid, scoring='roc_auc', n_jobs=-1, cv=kflod)
-
-grid_result = grid_search.fit(
-    X_train, y_train, eval_metric="auc", verbose=4)  # 运行网格搜索
-
-print(grid_result.best_score_, grid_search.best_params_)
+xgb_bagging=BaggingClassifier(base_estimator=xgb1)
+# param_grid = {
+#     'learning_rate': [0.05, 0.1, 0.2, 0.3],
+#     'n_estimators': [10, 20, 30, 50, 70],
+#     'min_child_weight': [3, 5, 7],
+#     'gamma': [0, 0.1, 0.2, 0.35],
+# }
+#
+#
+# kflod = StratifiedKFold(n_splits=7, shuffle=True, random_state=1)
+# # %% GridSearchCV fit
+#
+# grid_search = GridSearchCV(
+#     xgb1, param_grid, scoring='roc_auc', n_jobs=-1, cv=kflod)
+#
+# grid_result = grid_search.fit(
+#     X_train, y_train, eval_metric="auc", verbose=4)  # 运行网格搜索
+#
+# print(grid_result.best_score_, grid_search.best_params_)
 
 # 如果需要每一组参数的评估值，放开下面的注释
 # means = grid_result.cv_results_['mean_test_score']
@@ -96,10 +97,10 @@ print(grid_result.best_score_, grid_search.best_params_)
 
 
 # %% 模型训练与检查
-xgb1.fit(X_train, y_train)
+xgb_bagging.fit(X_train, y_train)
 
 # predict_array 为预测概率矩阵。我希望取出第一列。
-predict_array = xgb1.predict_proba(X_check)
+predict_array = xgb_bagging.predict_proba(X_check)
 y_predict = predict_array[:, 1]
 
 test_auc = metrics.roc_auc_score(y_check, y_predict)  # 我分出来的验证集上的auc值
@@ -110,5 +111,5 @@ print("AUC(%):", test_auc)
 # %% save model
 
 outfile = open("./saved_model/lr_model.pickle", "wb")
-pickle.dump(xgb1, outfile)
+pickle.dump(xgb_bagging, outfile)
 outfile.close()

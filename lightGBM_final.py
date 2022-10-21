@@ -137,7 +137,7 @@ model.fit(X_train, y_train)
 import joblib
 joblib.dump(model, 'dota_model.pkl')
 clf = joblib.load('dota_model.pkl')
-#
+#auc: 0.7536763114513698
 # # 模型预测
 # y_pred = gbm.predict(X_test, num_iteration=gbm.best_iteration_)
 y_pre = clf.predict_proba(X_test)[:,1]

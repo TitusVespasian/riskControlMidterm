@@ -48,7 +48,7 @@ lr = LogisticRegression(
     penalty='l2',
     class_weight="balanced",  # 平衡权重
     random_state=1,  # 固定随机数种子
-    max_iter=1600,
+    max_iter=9000,
     n_jobs=-1  # 使用全部的CPU。但是liblinear的时候没用
 )
 
@@ -80,3 +80,5 @@ print("manual AUC(%):", test_auc)
 
 # %%  保存文件
 outfile = open("./saved_model/lr_model.pickle", "wb")
+# 0.7221031092501292 {'C': 0.6, 'solver': 'saga'}
+# manual AUC(%): 0.723183862001308
