@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="943ee21f-ef0c-47bd-aeca-989f0a394bcd" name="Changes" comment="finish">
-      <change afterPath="$PROJECT_DIR$/saved_model/vote_model.pickle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_lgb2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vote_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/riskControlMidterm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/riskControlMidterm.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blending_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/blending_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/all/all_Cleaned_expCity.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/all/all_Cleaned_expCity.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dota_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/dota_model.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lightGBM_final.py" beforeDir="false" afterPath="$PROJECT_DIR$/lightGBM_final.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lightGBM_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/lightGBM_training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/random_forest_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/random_forest_training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result.csv" beforeDir="false" afterPath="$PROJECT_DIR$/result.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/saved_model/rf_model.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/saved_model/rf_model.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/saved_model/xgboost_model.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/saved_model/xgboost_model.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_lgb.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgboost_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/xgboost_training.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,9 +148,9 @@
     <list>
       <item itemvalue="Python.lightGBM_final (1)" />
       <item itemvalue="Python.lightGBM_training" />
+      <item itemvalue="Python.test_lgb2" />
       <item itemvalue="Python tests.test_lgb" />
       <item itemvalue="Python tests.Python tests in test_lgb2.py" />
-      <item itemvalue="Python.test_lgb2" />
     </list>
     <recent_temporary>
       <list>
