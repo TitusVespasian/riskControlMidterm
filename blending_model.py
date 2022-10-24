@@ -53,7 +53,7 @@ def get_model_param(adjusted_weight):
 def get_models(lgb_model, xgb_model, rf_model):
     _models = list()
     _models.append(('lgb', lgb_model))
-    _models.append(('rf', rf_model))
+    #_models.append(('rf', rf_model))
     _models.append(('xgb', xgb_model))
     return _models
 
@@ -74,7 +74,7 @@ def fit_ensemble(models, X_train, X_val, y_train, y_val):
     # create 2d array from predictions, each set is an input feature
     meta_X = hstack(meta_X)
     # define blending model
-    blender = LogisticRegression(penalty='l1',class_weight="balanced", solver='saga')
+    blender = RandomForestClassifier(class_weight='balanced')
     # fit on predictions from base models
     blender.fit(meta_X, y_val)
     return blender
@@ -103,7 +103,7 @@ from sklearn.metrics import roc_auc_score
 # define dataset
 X, y = get_dataset()
 # split dataset into train and test sets
-X_train_full, X_test, y_train_full, y_test = train_test_split(X, y, test_size=0.2, random_state=1, stratify=y)
+X_train_full, X_test, y_train_full, y_test = train_test_split(X, y, test_size=0.2, random_state=8, stratify=y)
 # split training set into train and validation sets
 X_train, X_val, y_train, y_val = train_test_split(X_train_full, y_train_full, test_size=0.4, random_state=1,
                                                   stratify=y_train_full)
@@ -124,7 +124,17 @@ yhat = predict_ensemble(models, blender, X_test)
 score = roc_auc_score(y_test, yhat)
 print('Blending Auc: %.3f' % (score * 100))
 
-# all_all = pd.read_csv("data/all/all_set.csv")
-# X = all_all.drop(['target'], axis=1)
-# y = all_all['target']
-# X_train_all=X['target'].notnull()
+all_all = pd.read_csv("data/all/train_test_all.csv")
+train=all_all[all_all['target'].notnull()]
+X_train_all=train.drop(['target',"Idx"], axis=1)
+y_train_all=train["target"]
+test=all_all[all_all['target'].isnull()]
+ID=test["Idx"]
+ID.reset_index(drop=True, inplace=True)
+X_test=test.drop(['target',"Idx"], axis=1)
+blender.fit(X_train_all,y_train_all)
+
+y_hat=blender.predict_proba(X_test)[:,1]
+df=pd.DataFrame(data={"target":y_hat})
+df=df.join(ID)
+df.to_csv("result.csv",index=False)

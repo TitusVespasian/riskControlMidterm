@@ -34,24 +34,6 @@ X_train, X_check, y_train, y_check = train_test_split(
     X, y, random_state=8, test_size=0.2, stratify=y)
 
 
-# %% 装载数据集，训练
-
-train_all = pd.read_csv("data/train/train_all.csv")
-X = train_all.drop("target", axis=1)
-y = train_all.pop('target')
-
-
-# 正样本的数目显著少于负样本，故计算权重
-negative_num = y.value_counts()[0]
-positive_num = y.value_counts()[1]
-adjusted_weight = round(negative_num / positive_num, 2)  # 正例的权值，保留2位小数
-
-
-# _train后缀是训练集和验证集的
-X_train, X_check, y_train, y_check = train_test_split(
-    X, y, random_state=8, test_size=0.2, stratify=y)
-
-
 # %% train_model-1
 
 

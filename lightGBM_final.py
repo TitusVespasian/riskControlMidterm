@@ -144,3 +144,17 @@ y_pre = clf.predict_proba(X_test)[:,1]
 #print("acc:", metrics.accuracy_score(y_test, y_pre))
 print("auc:", metrics.roc_auc_score(y_test, y_pre))
 #auc: 0.7536763114513698
+all_all = pd.read_csv("data/all/train_test_all.csv")
+train=all_all[all_all['target'].notnull()]
+X_train_all=train.drop(['target',"Idx"], axis=1)
+y_train_all=train["target"]
+test=all_all[all_all['target'].isnull()]
+ID=test["Idx"]
+ID.reset_index(drop=True, inplace=True)
+X_test=test.drop(['target',"Idx"], axis=1)
+model.fit(X_train_all,y_train_all)
+
+y_hat=model.predict_proba(X_test)[:,1]
+df=pd.DataFrame(data={"target":y_hat})
+df=df.join(ID)
+df.to_csv("result.csv",index=False)

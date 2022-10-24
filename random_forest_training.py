@@ -36,12 +36,12 @@ X_train, X_check, y_train, y_check = train_test_split(
 # %% model definition
 
 rfc = RandomForestClassifier(class_weight="balanced")
-parameters = {
-    'n_estimators': range(30, 80, 10),
-    'max_depth': range(3, 10, 2),
-    'min_samples_leaf': [5, 6, 7],
-    'max_features': [1, 2, 3],
-}
+# parameters = {
+#     'n_estimators': range(30, 80, 10),
+#     'max_depth': range(3, 10, 2),
+#     'min_samples_leaf': [5, 6, 7],
+#     'max_features': [1, 2, 3],
+# }
 
 grid_rfc = GridSearchCV(rfc, parameters, scoring='roc_auc')
 grid_rfc.fit(X_train, y_train)
