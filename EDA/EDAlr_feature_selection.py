@@ -207,7 +207,8 @@ def lr_feature_select(_train_master):
 
     # WeblogInfo_20
     # len=20
-    # modelfit(xgb1, dummies_WeblogInfo_20, y_train)
+    dummies_WeblogInfo_20=pd.get_dummies(_train_master.WeblogInfo_20, prefix="WeblogInfo_20")
+    modelfit(xgb1, dummies_WeblogInfo_20, y_train)
     _train_master = _train_master.join(pd.get_dummies(_train_master.WeblogInfo_20, prefix="WeblogInfo_20"))
     _train_master.drop('WeblogInfo_20', axis=1, inplace=True)
 
@@ -223,5 +224,5 @@ if __name__ == "__main__":
     train_master = pd.read_csv(r"../data/train/Master_Training_Cleaned.csv")
     y_train = train_master["target"].values
     train_master = lr_feature_select(train_master)
-    train_master.to_csv(r"../data/train/Master_Training_Cleaned_expCity.csv", index=False, sep=',')
+    #train_master.to_csv(r"../data/train/Master_Training_Cleaned_expCity.csv", index=False, sep=',')
 

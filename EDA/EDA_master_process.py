@@ -92,11 +92,11 @@ for col in train_master.columns:
     if col not in categoric_cols and col != u'Idx' and col != u'target' and col != 'ListingInfo':
         mean_cols = train_master[col].mean()
         train_master.loc[(train_master[col].isnull(), col)] = mean_cols
-        # n, bins, patches = plt.hist(train_master[col], 50, density=True, facecolor='g', alpha=0.75)
-        # plt.xlabel('bins')
-        # plt.ylabel('Value')
-        # plt.title(col)
-        # plt.show(block=True)
+        n, bins, patches = plt.hist(train_master[col], 50, density=True, facecolor='g', alpha=0.75)
+        plt.xlabel('bins')
+        plt.ylabel('Value')
+        plt.title(col)
+        plt.show(block=True)
 
 y_train = train_master['target'].values
 

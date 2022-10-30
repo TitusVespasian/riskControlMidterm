@@ -196,7 +196,7 @@ test_set=test_set.drop(["target","Idx"],axis=1)
 Y_res=model.predict_proba(test_set)[:,1]
 df=pd.DataFrame(data={"target":Y_res})
 df=df.join(ID)
-df.to_csv("result.csv")
+#df.to_csv("result.csv")
 ## 查看混淆矩阵 (预测值和真实值的各类情况统计矩阵)
 # confusion_matrix_result = metrics.confusion_matrix(y_test,y_pre)
 # print('The confusion matrix result:\n',confusion_matrix_result)

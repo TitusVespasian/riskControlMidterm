@@ -53,7 +53,7 @@ def get_model_param(adjusted_weight):
 def get_models(lgb_model, xgb_model, rf_model):
     _models = list()
     _models.append(('lgb', lgb_model))
-    #_models.append(('rf', rf_model))
+    _models.append(('rf', rf_model))
     _models.append(('xgb', xgb_model))
     return _models
 
@@ -137,4 +137,4 @@ blender.fit(X_train_all,y_train_all)
 y_hat=blender.predict_proba(X_test)[:,1]
 df=pd.DataFrame(data={"target":y_hat})
 df=df.join(ID)
-df.to_csv("result.csv",index=False)
+#df.to_csv("result.csv",index=False)
